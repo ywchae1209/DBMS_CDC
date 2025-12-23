@@ -278,7 +278,7 @@ psql -U testuser -d testdb
 
 -- psql
 
-pg_recvlogical -d "dbname=testdb" --slot demo_slot --start -f - -o proto_version=2 -o publication_names=demo_pub -o binary=true
+pg_recvlogical -d "dbname=testdb" --slot demo_slot --start -f - -o proto_version=2 -o publication_names=demo_pub -o binary=true -U testuser
                
 ```
 ( DML을 실행하면 binary CDC가 표시됨을 볼 수 있다.)
