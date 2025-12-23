@@ -12,7 +12,7 @@
 >  `-- psql` : psql (postgresql용 sql client에서 입력  
 > `#...conf` : conf 파일에 편집할 내용  
  
-
+-----
 # postgresql 준비하기 (in docker)
 ## 1. docker 버전 check
 ```cmd
@@ -53,7 +53,7 @@ docker run -d --name pg   -e POSTGRES_USER=testuser -e POSTGRES_PASSWORD=testpas
 
 docker exec -it postgres14 psql -U testuser -d testdb
 ```
-
+-----
 # postgresql replication 설정하기
 
 ## 1. pg 설정편집
@@ -164,7 +164,8 @@ SHOW max_replication_slots;
 SHOW max_wal_senders;
 ```
 
-### 2. pgoutput 확인
+-----
+# pgoutput으로 CDC capture 보기
 
 source DB에 publication, slot설정을 하고, client에서 subscribe를 하도록 함.
 
@@ -173,7 +174,7 @@ source DB에 publication, slot설정을 하고, client에서 subscribe를 하도
   * slot에 저장되는 record많아지면, * out-of-memory 발생가능하다고 함. size 설정이 pg14(?)부터 추가되었다고 함(확인필요)
 * subscribe   : CDC record를 전달받도록 지정
 
-#### 1. source 
+## 1. source 
 
 * shell 접속
  ```cmd
@@ -241,7 +242,7 @@ SELECT * FROM pg_replication_slots; -- 슬롯정보
 START_REPLICATION SLOT demo_slot LOGICAL 0/0 (proto_version '2', publication_names 'demo_pub', binary 'true');
 
 ```
-##### capture 확인
+### capture 확인
 
 * 아래의 `2. client`를 한 후, insert 등을 DML을 실행하고, `2. client`의 접속에서 출력되는 내용을 본다.
 
@@ -250,9 +251,9 @@ START_REPLICATION SLOT demo_slot LOGICAL 0/0 (proto_version '2', publication_nam
   insert into demo(data) values ('this'), ('is'), ('first'), ('cdc test');
 ```
 
-#### 2. client 
+## 2. client 
 
-##### 1. 구독해서 CDC 정보 보기 
+### 1. 구독해서 CDC 정보 보기 
 
 CDC record를 볼것이므로, psql접속을 하나 새로 열도록 한다.
 * shell 접속
@@ -280,3 +281,4 @@ psql -U testuser -d testdb
 pg_recvlogical -d "dbname=testdb" --slot demo_slot --start -f - -o proto_version=2 -o publication_names=demo_pub -o binary=true
                
 ```
+( DML을 실행하면 binary CDC가 표시됨을 볼 수 있다.)
