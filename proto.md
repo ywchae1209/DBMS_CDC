@@ -220,3 +220,23 @@ BitVector(208 bits, 0x4300000000000209a5e8000000000209a6180002e9a9eb5c8d58)
 
 #### 5. binary parer : note
 * ColumnValue에 있는 데이터는 RelationColumn(컬럼메타정보)를 이용해서 후처리해야 함.
+* Capture데이터의 메타정보(Relation; 테이블을 Relation이라 부름)를 캐싱해서 병합처리해야 한다는 의미.
+* Numeric 포맷 : 단순변환 곤란( Precision, Scala, Weight 등에 따라 달라짐)
+* Timestamp 기준점 : Unix epoch (1970)이 아니라, 2000/1/1이라고 함.(오프셋보정 필요)
+
+#### 6. PG vs Oracle -- 찾아 봐야 함(불확실)
+* 클러스터 구조 ( RAC)
+* 스토리지 (ASM)
+* 고가용성 관리 ( Clusterware)
+* 분산 query ( RAC parallel query)
+
+1. RAC같은 기능이 있나?
+> 거의 없다고 볼 수 있으나, PG-BDR 구성도 가능하다고 함.
+> RAC는 일종의 Active-Active 구조, PG는 Active-Standby만 사용
+> PG-BDR( Bi-Directional Replication) : https://blog.naver.com/techtrip/221853084418
+> Citus(Extension), FDW(Foreign Data wrappder) : sharding ( 일종의 분산query 지원 -- 오라클 RAC parallel query)
+> Patroni + HAProxy : 장애시 standby 승격 ( 일종의 고가용성 기능 -- 오라클에는 Clustware )
+
+2. ASM 같은 기능이 있나?
+> 내장은 없음
+> PG 대안 : LVM(Logical Volumn Manager), ZFS/XFS, Tablespace( 테이블이나 인덱스를 다른 Disk/경로에 배치)
