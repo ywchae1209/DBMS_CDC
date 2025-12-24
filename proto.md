@@ -231,12 +231,12 @@ BitVector(208 bits, 0x4300000000000209a5e8000000000209a6180002e9a9eb5c8d58)
 * 분산 query ( RAC parallel query)
 
 1. RAC같은 기능이 있나?
-> 거의 없다고 볼 수 있으나, PG-BDR 구성도 가능하다고 함.
-> RAC는 일종의 Active-Active 구조, PG는 Active-Standby만 사용
-> PG-BDR( Bi-Directional Replication) : https://blog.naver.com/techtrip/221853084418
-> Citus(Extension), FDW(Foreign Data wrappder) : sharding ( 일종의 분산query 지원 -- 오라클 RAC parallel query)
-> Patroni + HAProxy : 장애시 standby 승격 ( 일종의 고가용성 기능 -- 오라클에는 Clustware )
+> * 거의 없다고 볼 수 있으나, PG-BDR 구성도 가능하다고 함.
+> * RAC는 일종의 Active-Active 구조, PG는 Active-Standby만 사용
+> * PG-BDR( Bi-Directional Replication) : https://blog.naver.com/techtrip/221853084418
+> * Citus(Extension), FDW(Foreign Data wrappder) : sharding ( 일종의 분산query 지원 -- 오라클 RAC parallel query)
+> * Patroni + HAProxy : 장애시 standby 승격 ( 일종의 고가용성 기능 -- 오라클에는 Clustware )
 
 2. ASM 같은 기능이 있나?
-> 내장은 없음
-> PG 대안 : LVM(Logical Volumn Manager), ZFS/XFS, Tablespace( 테이블이나 인덱스를 다른 Disk/경로에 배치)
+> * 내장은 없음
+> * PG 대안 : LVM(Logical Volumn Manager), ZFS/XFS, Tablespace( 테이블이나 인덱스를 다른 Disk/경로에 배치)
