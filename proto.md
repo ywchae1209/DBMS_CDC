@@ -216,7 +216,7 @@ BitVector(208 bits, 0x4300000000000209a5e8000000000209a6180002e9a9eb5c8d58)
  
 #### 4. version check
 * PG14 이전 버전 조사필요.
-
+* 컬럼데이터 포맷을 't'(텍스트)로만 준다는 것과 이후 추가된 Capture 타입들이 빠지는 것만 다른 것으로 보임.
 
 #### 5. binary parer : note
 * ColumnValue에 있는 데이터는 RelationColumn(컬럼메타정보)를 이용해서 후처리해야 함.
