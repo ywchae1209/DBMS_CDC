@@ -162,9 +162,6 @@ object Test {
     }
   }
 }
-
-
-
 ```
 
 * output 샘플 : demo 테이블에 1개의 row를 넣었다.
@@ -197,7 +194,7 @@ BitVector(208 bits, 0x4300000000000209a5e8000000000209a6180002e9a9eb5c8d58)
 
 ### 확인 필요한 정보
 
-1. DDL 발생시
+#### 1. DDL 발생시
 
 
 | DDL           | capture	                | how to |
@@ -210,12 +207,16 @@ BitVector(208 bits, 0x4300000000000209a5e8000000000209a6180002e9a9eb5c8d58)
 * create table은 이후 첫 입력시 변경 전달됨.
 * drop table은 변경정보 없음
 
-2. PG14 이전버전은 binary out대신 text out을 한다고 함. :: 2개의 parser 필요할 듯.
+#### 2. PG14 이전버전은 binary out대신 text out을 한다고 함. :: 2개의 parser 필요할 듯.
 
-3. slot에 쌓이는 정보
+#### 3. slot에 쌓이는 정보
 > `FOR ALL TABLES` : 모든 테이블 변경사항이 포함됨.  
 > primary key가 없는 테이블의 update, delete를 추가하려면  
 > `ALTER TABLE table_name REPLICA IDENTITY FULL;`  -- table schema가 바뀌는 것은 아님...
  
-4. version check
+#### 4. version check
 * PG14 이전 버전 조사필요.
+
+
+#### 5. binary parer : note
+* ColumnValue에 있는 데이터는 RelationColumn(컬럼메타정보)를 이용해서 후처리해야 함.
