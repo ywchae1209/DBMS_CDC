@@ -28,4 +28,4 @@
 
 ## 12/29
 1. Binary Record Parser ( 예정 : ~ 1/9 : iter#1 )
-
+* 작업중 [[ https://github.com/ywchae1209/DBMS_CDC/blob/master/iter%231.md ]]
