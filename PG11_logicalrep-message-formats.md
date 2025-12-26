@@ -1,37 +1,9 @@
+--- start ---
+
+below is made by scraping. must check url document.
 https://www.postgresql.org/docs/11/protocol-logicalrep-message-formats.html
+
 ### graph by mermaid
-
---- Update ---
-```mermaid
-graph TD
-  subgraph Update ["Update"]
-    subgraph header_0 ["Header"]
-      1_1_Byte1__U__["1_1_Byte1('U')"]
-      1_2_Int32["1_2_Int32"]
-      1_1_Byte1__U__ --> 1_2_Int32
-      1_3_Byte1__K__["1_3_Byte1('K')"]
-      1_2_Int32 --> 1_3_Byte1__K__
-      1_4_Byte1__O__["1_4_Byte1('O')"]
-      1_3_Byte1__K__ --> 1_4_Byte1__O__
-      1_5_TupleData["1_5_TupleData"]
-      1_4_Byte1__O__ --> 1_5_TupleData
-      1_6_Byte1__N__["1_6_Byte1('N')"]
-      1_5_TupleData --> 1_6_Byte1__N__
-      1_7_TupleData["1_7_TupleData"]
-      1_6_Byte1__N__ --> 1_7_TupleData
-    end
-  end
-
-    1_1_Byte1__U__ -.- desc_1_1_Byte1__U__["Identifies the message as an update message."]
-    1_2_Int32 -.- desc_1_2_Int32["ID of the relation corresponding to the ID in the relation message."]
-    1_3_Byte1__K__ -.- desc_1_3_Byte1__K__["Identifies the following TupleData submessage as a key. This field is optional and is only present if the update changed data in any of the column(s) that are part of the REPLICA IDENTITY index."]
-    1_4_Byte1__O__ -.- desc_1_4_Byte1__O__["Identifies the following TupleData submessage as an old tuple. This field is optional and is only present if table in which the update happened has REPLICA IDENTITY set to FULL."]
-    1_5_TupleData -.- desc_1_5_TupleData["TupleData message part representing the contents of the old tuple or primary key. Only present if the previous 'O' or 'K' part is present."]
-    1_6_Byte1__N__ -.- desc_1_6_Byte1__N__["Identifies the following TupleData message as a new tuple."]
-    1_7_TupleData -.- desc_1_7_TupleData["TupleData message part representing the contents of a new tuple."]
-  classDef comment fill:#f0f0f0,stroke:#666,stroke-dasharray: 5 5;
-  class desc_1_1_Byte1__U__,desc_1_2_Int32,desc_1_3_Byte1__K__,desc_1_4_Byte1__O__,desc_1_5_TupleData,desc_1_6_Byte1__N__,desc_1_7_TupleData comment;
-```
 
 --- Commit ---
 ```mermaid
@@ -76,7 +48,7 @@ graph TD
       1_6_Int16["1_6_Int16"]
       1_5_Int8 --> 1_6_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int8["2_1_Int8"]
       2_2_String["2_2_String"]
       2_1_Int8 --> 2_2_String
@@ -85,7 +57,7 @@ graph TD
       2_4_Int32["2_4_Int32"]
       2_3_Int32 --> 2_4_Int32
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__R__ -.- desc_1_1_Byte1__R__["Identifies the message as a relation message."]
@@ -197,6 +169,73 @@ graph TD
   class desc_1_1_Byte1__Y__,desc_1_2_Int32,desc_1_3_String,desc_1_4_String comment;
 ```
 
+--- Update ---
+```mermaid
+graph TD
+  subgraph Update ["Update"]
+    subgraph header_0 ["Header"]
+      1_1_Byte1__U__["1_1_Byte1('U')"]
+      1_2_Int32["1_2_Int32"]
+      1_1_Byte1__U__ --> 1_2_Int32
+      1_3_Byte1__K__["1_3_Byte1('K')"]
+      1_2_Int32 --> 1_3_Byte1__K__
+      1_4_Byte1__O__["1_4_Byte1('O')"]
+      1_3_Byte1__K__ --> 1_4_Byte1__O__
+      1_5_TupleData["1_5_TupleData"]
+      1_4_Byte1__O__ --> 1_5_TupleData
+      1_6_Byte1__N__["1_6_Byte1('N')"]
+      1_5_TupleData --> 1_6_Byte1__N__
+      1_7_TupleData["1_7_TupleData"]
+      1_6_Byte1__N__ --> 1_7_TupleData
+    end
+  end
+
+    1_1_Byte1__U__ -.- desc_1_1_Byte1__U__["Identifies the message as an update message."]
+    1_2_Int32 -.- desc_1_2_Int32["ID of the relation corresponding to the ID in the relation message."]
+    1_3_Byte1__K__ -.- desc_1_3_Byte1__K__["Identifies the following TupleData submessage as a key. This field is optional and is only present if the update changed data in any of the column(s) that are part of the REPLICA IDENTITY index."]
+    1_4_Byte1__O__ -.- desc_1_4_Byte1__O__["Identifies the following TupleData submessage as an old tuple. This field is optional and is only present if table in which the update happened has REPLICA IDENTITY set to FULL."]
+    1_5_TupleData -.- desc_1_5_TupleData["TupleData message part representing the contents of the old tuple or primary key. Only present if the previous 'O' or 'K' part is present."]
+    1_6_Byte1__N__ -.- desc_1_6_Byte1__N__["Identifies the following TupleData message as a new tuple."]
+    1_7_TupleData -.- desc_1_7_TupleData["TupleData message part representing the contents of a new tuple."]
+  classDef comment fill:#f0f0f0,stroke:#666,stroke-dasharray: 5 5;
+  class desc_1_1_Byte1__U__,desc_1_2_Int32,desc_1_3_Byte1__K__,desc_1_4_Byte1__O__,desc_1_5_TupleData,desc_1_6_Byte1__N__,desc_1_7_TupleData comment;
+```
+
+--- TupleData ---
+```mermaid
+graph TD
+  subgraph TupleData ["TupleData"]
+    subgraph header_0 ["Header"]
+      1_1_Int16["1_1_Int16"]
+    end
+    subgraph group_1_1 ["Group_1"]
+      2_1_Byte1__n__["2_1_Byte1('n')"]
+    end
+    header_0 --> group_1_1
+    subgraph group_2_2 ["Group_2"]
+      3_1_Byte1__u__["3_1_Byte1('u')"]
+    end
+    group_1_1 --> group_2_2
+    subgraph group_3_3 ["Group_3"]
+      4_1_Byte1__t__["4_1_Byte1('t')"]
+      4_2_Int32["4_2_Int32"]
+      4_1_Byte1__t__ --> 4_2_Int32
+      4_3_Byten["4_3_Byten"]
+      4_2_Int32 --> 4_3_Byten
+    end
+    group_2_2 --> group_3_3
+  end
+
+    1_1_Int16 -.- desc_1_1_Int16["Number of columns."]
+    2_1_Byte1__n__ -.- desc_2_1_Byte1__n__["Identifies the data as NULL value."]
+    3_1_Byte1__u__ -.- desc_3_1_Byte1__u__["Identifies unchanged TOASTed value (the actual value is not sent)."]
+    4_1_Byte1__t__ -.- desc_4_1_Byte1__t__["Identifies the data as text formatted value."]
+    4_2_Int32 -.- desc_4_2_Int32["Length of the column value."]
+    4_3_Byten -.- desc_4_3_Byten["The value of the column, in text format. (A future release might support additional formats.) n is the above length."]
+  classDef comment fill:#f0f0f0,stroke:#666,stroke-dasharray: 5 5;
+  class desc_1_1_Int16,desc_2_1_Byte1__n__,desc_3_1_Byte1__u__,desc_4_1_Byte1__t__,desc_4_2_Int32,desc_4_3_Byten comment;
+```
+
 --- Begin ---
 ```mermaid
 graph TD
@@ -298,7 +337,7 @@ messages:
         in pg_class).
     - field: 1_6_Int16
       description: Number of columns.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int8
       description: Flags for the column. Currently can be either 0 for no flags or
@@ -388,5 +427,29 @@ messages:
     - field: 1_4_Int32
       description: ID of the relation corresponding to the ID in the relation message.
         This field is repeated for each relation.
+- name: TupleData
+  blocks:
+  - type: header
+    fields:
+    - field: 1_1_Int16
+      description: Number of columns.
+  - type: group_1
+    fields:
+    - field: 2_1_Byte1('n')
+      description: Identifies the data as NULL value.
+  - type: group_2
+    fields:
+    - field: 3_1_Byte1('u')
+      description: Identifies unchanged TOASTed value (the actual value is not sent).
+  - type: group_3
+    fields:
+    - field: 4_1_Byte1('t')
+      description: Identifies the data as text formatted value.
+    - field: 4_2_Int32
+      description: Length of the column value.
+    - field: 4_3_Byten
+      description: The value of the column, in text format. (A future release might
+        support additional formats.) n is the above length.
 
 ```
+--- end ---
