@@ -1,3 +1,6 @@
+--- start ---
+
+below is made by scraping. must check url document.
 https://www.postgresql.org/docs/18/protocol-logicalrep-message-formats.html
 
 ### graph by mermaid
@@ -342,26 +345,26 @@ graph TD
     subgraph header_0 ["Header"]
       1_1_Int16["1_1_Int16"]
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Byte1__n__["2_1_Byte1('n')"]
     end
-    header_0 --> repeat_1_1
-    subgraph repeat_2_2 ["Repeat_2"]
+    header_0 --> group_1_1
+    subgraph group_2_2 ["Group_2"]
       3_1_Byte1__u__["3_1_Byte1('u')"]
     end
-    repeat_1_1 --> repeat_2_2
-    subgraph repeat_3_3 ["Repeat_3"]
+    group_1_1 --> group_2_2
+    subgraph group_3_3 ["Group_3"]
       4_1_Byte1__t__["4_1_Byte1('t')"]
     end
-    repeat_2_2 --> repeat_3_3
-    subgraph repeat_4_4 ["Repeat_4"]
+    group_2_2 --> group_3_3
+    subgraph group_4_4 ["Group_4"]
       5_1_Byte1__b__["5_1_Byte1('b')"]
       5_2_Int32["5_2_Int32"]
       5_1_Byte1__b__ --> 5_2_Int32
       5_3_Byten["5_3_Byten"]
       5_2_Int32 --> 5_3_Byten
     end
-    repeat_3_3 --> repeat_4_4
+    group_3_3 --> group_4_4
   end
 
     1_1_Int16 -.- desc_1_1_Int16["Number of columns."]
@@ -466,7 +469,7 @@ graph TD
       1_7_Int16["1_7_Int16"]
       1_6_Int8 --> 1_7_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int8["2_1_Int8"]
       2_2_String["2_2_String"]
       2_1_Int8 --> 2_2_String
@@ -475,7 +478,7 @@ graph TD
       2_4_Int32["2_4_Int32"]
       2_3_Int32__Oid_ --> 2_4_Int32
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__R__ -.- desc_1_1_Byte1__R__["Identifies the message as a relation message."]
@@ -661,7 +664,7 @@ messages:
         in pg_class).
     - field: 1_7_Int16
       description: Number of columns.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int8
       description: Flags for the column. Currently can be either 0 for no flags or
@@ -923,19 +926,19 @@ messages:
     fields:
     - field: 1_1_Int16
       description: Number of columns.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Byte1('n')
       description: Identifies the data as NULL value.
-  - type: repeat_2
+  - type: group_2
     fields:
     - field: 3_1_Byte1('u')
       description: Identifies unchanged TOASTed value (the actual value is not sent).
-  - type: repeat_3
+  - type: group_3
     fields:
     - field: 4_1_Byte1('t')
       description: Identifies the data as text formatted value.
-  - type: repeat_4
+  - type: group_4
     fields:
     - field: 5_1_Byte1('b')
       description: Identifies the data as binary formatted value.
@@ -946,3 +949,4 @@ messages:
         specified in the preceding format byte). n is the above length.
 
 ```
+--- end ---
