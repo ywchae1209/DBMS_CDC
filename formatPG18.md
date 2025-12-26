@@ -1,6 +1,9 @@
-## https://www.postgresql.org/docs/18/protocol-message-formats.html
+--- start ---
 
-### graph by mermaid 
+below is made by scraping. must check url document.
+https://www.postgresql.org/docs/18/protocol-message-formats.html
+
+### graph by mermaid
 
 --- Terminate (F) ---
 ```mermaid
@@ -53,7 +56,7 @@ graph TD
       1_3_Int16["1_3_Int16"]
       1_2_Int32 --> 1_3_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_String["2_1_String"]
       2_2_Int32["2_2_Int32"]
       2_1_String --> 2_2_Int32
@@ -68,7 +71,7 @@ graph TD
       2_7_Int16["2_7_Int16"]
       2_6_Int32 --> 2_7_Int16
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__T__ -.- desc_1_1_Byte1__T__["Identifies the message as a row description."]
@@ -287,18 +290,18 @@ graph TD
       1_7_Int16["1_7_Int16"]
       1_6_Int16_C_ --> 1_7_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int32["2_1_Int32"]
       2_2_Byten["2_2_Byten"]
       2_1_Int32 --> 2_2_Byten
     end
-    header_0 --> repeat_1_1
-    subgraph repeat_2_2 ["Repeat_2"]
+    header_0 --> group_1_1
+    subgraph group_2_2 ["Group_2"]
       3_1_Int16["3_1_Int16"]
       3_2_Int16_R_["3_2_Int16[R]"]
       3_1_Int16 --> 3_2_Int16_R_
     end
-    repeat_1_1 --> repeat_2_2
+    group_1_1 --> group_2_2
   end
 
     1_1_Byte1__B__ -.- desc_1_1_Byte1__B__["Identifies the message as a Bind command."]
@@ -331,10 +334,10 @@ graph TD
       1_5_Int16["1_5_Int16"]
       1_4_String --> 1_5_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int32["2_1_Int32"]
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__P__ -.- desc_1_1_Byte1__P__["Identifies the message as a Parse command."]
@@ -441,10 +444,10 @@ graph TD
       1_3_Int16["1_3_Int16"]
       1_2_Int32 --> 1_3_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int32["2_1_Int32"]
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__t__ -.- desc_1_1_Byte1__t__["Identifies the message as a parameter description."]
@@ -472,16 +475,16 @@ graph TD
       1_6_Int16["1_6_Int16"]
       1_5_Int16_C_ --> 1_6_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int32["2_1_Int32"]
       2_2_Byten["2_2_Byten"]
       2_1_Int32 --> 2_2_Byten
     end
-    header_0 --> repeat_1_1
-    subgraph repeat_2_2 ["Repeat_2"]
+    header_0 --> group_1_1
+    subgraph group_2_2 ["Group_2"]
       3_1_Int16["3_1_Int16"]
     end
-    repeat_1_1 --> repeat_2_2
+    group_1_1 --> group_2_2
   end
 
     1_1_Byte1__F__ -.- desc_1_1_Byte1__F__["Identifies the message as a function call."]
@@ -543,12 +546,12 @@ graph TD
       1_2_Int32["1_2_Int32"]
       1_1_Byte1__N__ --> 1_2_Int32
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Byte1["2_1_Byte1"]
       2_2_String["2_2_String"]
       2_1_Byte1 --> 2_2_String
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__N__ -.- desc_1_1_Byte1__N__["Identifies the message as a notice."]
@@ -676,12 +679,12 @@ graph TD
       1_3_Int16["1_3_Int16"]
       1_2_Int32 --> 1_3_Int16
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Int32["2_1_Int32"]
       2_2_Byten["2_2_Byten"]
       2_1_Int32 --> 2_2_Byten
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__D__ -.- desc_1_1_Byte1__D__["Identifies the message as a data row."]
@@ -702,7 +705,7 @@ graph TD
       1_2_Int32_196610_["1_2_Int32(196610)"]
       1_1_Int32 --> 1_2_Int32_196610_
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_String["2_1_String"]
       2_2_user["2_2_user"]
       2_1_String --> 2_2_user
@@ -715,8 +718,8 @@ graph TD
       2_6_String["2_6_String"]
       2_5_replication --> 2_6_String
     end
-    header_0 --> repeat_1_1
-    subgraph repeat_2_2 ["Repeat_2"]
+    header_0 --> group_1_1
+    subgraph group_2_2 ["Group_2"]
       3_1_user["3_1_user"]
       3_2_database["3_2_database"]
       3_1_user --> 3_2_database
@@ -725,7 +728,7 @@ graph TD
       3_4_replication["3_4_replication"]
       3_3_options --> 3_4_replication
     end
-    repeat_1_1 --> repeat_2_2
+    group_1_1 --> group_2_2
   end
 
     1_1_Int32 -.- desc_1_1_Int32["Length of message contents in bytes, including self."]
@@ -796,12 +799,12 @@ graph TD
       1_2_Int32["1_2_Int32"]
       1_1_Byte1__E__ --> 1_2_Int32
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_Byte1["2_1_Byte1"]
       2_2_String["2_2_String"]
       2_1_Byte1 --> 2_2_String
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__E__ -.- desc_1_1_Byte1__E__["Identifies the message as an error."]
@@ -931,10 +934,10 @@ graph TD
       1_4_Int32["1_4_Int32"]
       1_3_Int32 --> 1_4_Int32
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_String["2_1_String"]
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__v__ -.- desc_1_1_Byte1__v__["Identifies the message as a protocol version negotiation message."]
@@ -1003,10 +1006,10 @@ graph TD
       1_3_Int32_10_["1_3_Int32(10)"]
       1_2_Int32 --> 1_3_Int32_10_
     end
-    subgraph repeat_1_1 ["Repeat_1"]
+    subgraph group_1_1 ["Group_1"]
       2_1_String["2_1_String"]
     end
-    header_0 --> repeat_1_1
+    header_0 --> group_1_1
   end
 
     1_1_Byte1__R__ -.- desc_1_1_Byte1__R__["Identifies the message as an authentication request."]
@@ -1197,6 +1200,29 @@ graph TD
   class desc_1_1_Byte1__R__,desc_1_2_Int32_8_,desc_1_3_Int32_3_ comment;
 ```
 
+--- String ---
+```mermaid
+graph TD
+  subgraph String ["String"]
+    subgraph header_0 ["Header"]
+      1_1_user["1_1_user"]
+      1_2_database["1_2_database"]
+      1_1_user --> 1_2_database
+      1_3_options["1_3_options"]
+      1_2_database --> 1_3_options
+      1_4_replication["1_4_replication"]
+      1_3_options --> 1_4_replication
+    end
+  end
+
+    1_1_user -.- desc_1_1_user["The database user name to connect as. Required; there is no default."]
+    1_2_database -.- desc_1_2_database["The database to connect to. Defaults to the user name."]
+    1_3_options -.- desc_1_3_options["Command-line arguments for the backend. (This is deprecated in favor of setting individual run-time parameters.) Spaces within this string are considered to separate arguments, unless escaped with a backslash (\); write \\ to represent a literal backslash."]
+    1_4_replication -.- desc_1_4_replication["Used to connect in streaming replication mode, where a small set of replication commands can be issued instead of SQL statements. Value can be true, false, or database, and the default is false. See Section 54.4 for details."]
+  classDef comment fill:#f0f0f0,stroke:#666,stroke-dasharray: 5 5;
+  class desc_1_1_user,desc_1_2_database,desc_1_3_options,desc_1_4_replication comment;
+```
+
 --- Close (F) ---
 ```mermaid
 graph TD
@@ -1221,9 +1247,7 @@ graph TD
 ```
 
 ### yaml
-
-```yaml
-url: https://www.postgresql.org/docs/18/protocol-message-formats.html
+```yamlurl: https://www.postgresql.org/docs/18/protocol-message-formats.html
 messages:
 - name: AuthenticationOk (B)
   blocks:
@@ -1309,7 +1333,7 @@ messages:
       description: Length of message contents in bytes, including self.
     - field: 1_3_Int32(10)
       description: Specifies that SASL authentication is required.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_String
       description: Name of a SASL authentication mechanism.
@@ -1385,7 +1409,7 @@ messages:
     - field: 1_7_Int16
       description: The number of parameter values that follow (possibly zero). This
         must match the number of parameters needed by the query.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int32
       description: The length of the parameter value, in bytes (this count does not
@@ -1394,7 +1418,7 @@ messages:
     - field: 2_2_Byten
       description: The value of the parameter, in the format indicated by the associated
         format code. n is the above length.
-  - type: repeat_2
+  - type: group_2
     fields:
     - field: 3_1_Int16
       description: The number of result-column format codes that follow (denoted R
@@ -1574,7 +1598,7 @@ messages:
       description: Length of message contents in bytes, including self.
     - field: 1_3_Int16
       description: The number of column values that follow (possibly zero).
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int32
       description: The length of the column value, in bytes (this count does not include
@@ -1614,7 +1638,7 @@ messages:
       description: Identifies the message as an error.
     - field: 1_2_Int32
       description: Length of message contents in bytes, including self.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Byte1
       description: A code identifying the field type; if zero, this is the message
@@ -1665,7 +1689,7 @@ messages:
         one (binary).
     - field: 1_6_Int16
       description: Specifies the number of arguments being supplied to the function.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int32
       description: The length of the argument value, in bytes (this count does not
@@ -1674,7 +1698,7 @@ messages:
     - field: 2_2_Byten
       description: The value of the argument, in the format indicated by the associated
         format code. n is the above length.
-  - type: repeat_2
+  - type: group_2
     fields:
     - field: 3_1_Int16
       description: The format code for the function result. Must presently be zero
@@ -1730,7 +1754,7 @@ messages:
         protocol version requested by the client.
     - field: 1_4_Int32
       description: Number of protocol options not recognized by the server.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_String
       description: The option name.
@@ -1750,7 +1774,7 @@ messages:
       description: Identifies the message as a notice.
     - field: 1_2_Int32
       description: Length of message contents in bytes, including self.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Byte1
       description: A code identifying the field type; if zero, this is the message
@@ -1783,7 +1807,7 @@ messages:
       description: Length of message contents in bytes, including self.
     - field: 1_3_Int16
       description: The number of parameters used by the statement (can be zero).
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int32
       description: Specifies the object ID of the parameter data type.
@@ -1817,7 +1841,7 @@ messages:
         that this is not an indication of the number of parameters that might appear
         in the query string, only the number that the frontend wants to prespecify
         types for.
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_Int32
       description: Specifies the object ID of the parameter data type. Placing a zero
@@ -1885,7 +1909,7 @@ messages:
       description: Length of message contents in bytes, including self.
     - field: 1_3_Int16
       description: Specifies the number of fields in a row (can be zero).
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_String
       description: The field name.
@@ -1956,7 +1980,7 @@ messages:
       description: The protocol version number. The most significant 16 bits are the
         major version number (3 for the protocol described here). The least significant
         16 bits are the minor version number (2 for the protocol described here).
-  - type: repeat_1
+  - type: group_1
     fields:
     - field: 2_1_String
       description: 'The parameter name. Currently recognized names are: user The database
@@ -1989,7 +2013,7 @@ messages:
         details.
     - field: 2_6_String
       description: The parameter value.
-  - type: repeat_2
+  - type: group_2
     fields:
     - field: 3_1_user
       description: The database user name to connect as. Required; there is no default.
@@ -2021,4 +2045,24 @@ messages:
       description: Identifies the message as a termination.
     - field: 1_2_Int32(4)
       description: Length of message contents in bytes, including self.
+- name: String
+  blocks:
+  - type: header
+    fields:
+    - field: 1_1_user
+      description: The database user name to connect as. Required; there is no default.
+    - field: 1_2_database
+      description: The database to connect to. Defaults to the user name.
+    - field: 1_3_options
+      description: Command-line arguments for the backend. (This is deprecated in
+        favor of setting individual run-time parameters.) Spaces within this string
+        are considered to separate arguments, unless escaped with a backslash (\);
+        write \\ to represent a literal backslash.
+    - field: 1_4_replication
+      description: Used to connect in streaming replication mode, where a small set
+        of replication commands can be issued instead of SQL statements. Value can
+        be true, false, or database, and the default is false. See Section 54.4 for
+        details.
+
 ```
+--- end ---
