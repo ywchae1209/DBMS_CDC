@@ -308,10 +308,12 @@ public class TwoPhaseCommitExample {
 * 비교
 > 1. kafka 등 eco시스템 확장을 고려하면 scala 기반 개발이 탁월\
 > 2. 성능상 최적화 기법을 사용한다면, rust vs scala의 through-put은 1.5~2배정도
-> 3.  expectation
->    through-put : 600MB/s~1GB/s (scala) vs 1~2GB/s(rust, c++)  
->    latency     : 1~5 ms                vs 1 ms
 
+> expectation
+```
+through-put : 600MB/s ~ 1GB/s (scala) vs 1 ~ 2GB/s(rust, c++)  
+latency     : 1 ~ 5 ms                vs 1 ms
+```
 * scala/scodec 선택의 이유 ( 최적의 선택일 듯)
 1. 개발생산성
 2. robustness, stability : 가장 탁월
