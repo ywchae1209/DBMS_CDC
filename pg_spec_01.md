@@ -294,3 +294,30 @@ public class TwoPhaseCommitExample {
 
 ```
 
+## 구현 방법의 선택에 대한 고민
+
+* scala/scode 과 다른 방법의 비교
+  
+> 1. C-base : 성능/안정성/세심제어 기법 적용 (사실상) 불가 **논외**
+> 2. C++ base : 메모리누수(순환참조), 에러처리(타입체크 비강제), 병렬처리(racing) 등 부담, 개발생산성 낮음(설계복잡)
+> 3. rust : nom, built-in 메커니즘 등 기법 존재. **porting 제약**, 개발생산성(보통; 단, rust 학습곡선 가파름)
+> 4. scala/scodec : 안정성/제어/확장성 등 유리
+
+--> 가능한 선택지는 scala 또는 rust 정도
+
+* 비교
+> 1. kafka 등 eco시스템 확장을 고려하면 scala 기반 개발이 탁월\
+> 2. 성능상 최적화 기법을 사용한다면, rust vs scala의 through-put은 1.5~2배정도
+> 3.  expectation
+>    through-put : 600MB/s~1GB/s (scala) vs 1~2GB/s(rust, c++)  
+>    latency     : 1~5 ms                vs 1 ms
+
+* scala/scodec 선택의 이유 ( 최적의 선택일 듯)
+1. 개발생산성
+2. robustness, stability : 가장 탁월
+3. 병렬성 : 가장 유리 (multi-core, multi-node 확장성 등- single-thread 성능비교 중요도는 생각보다 낮음)
+4. 이식성 : 가장 유리
+5. 성능차 : 최적의 개발을 최대한 적용하지 못하는 상황(보통의 경우)이면, 수치상의 성능차보다 차이 적을 것.
+6. porting: scala기반 설계(functional)는 rust로 이식하기 용이한 편(혹시, 필요해 진다면.)
+7. 제한 : 최적의 처리 알고리즘 선택, copy-최소화 처리해야 함. 각종 boxing 최소화 필요
+
