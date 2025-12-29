@@ -1,3 +1,11 @@
+### todo
+* document to code.
+* complete codecs
+* parallel :: apply fs2 par
+* cost reduction :: how to reduce copy cost.
+
+
+
 ```scala
 package io.flux
 package capture.pgoutput
