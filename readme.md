@@ -29,3 +29,8 @@
 ## 12/29
 1. Binary Record Parser ( 예정 : ~ 1/9 : iter#1 )
 * 작업중 [[ https://github.com/ywchae1209/DBMS_CDC/blob/master/iter%231.md ]]
+
+2. spec 조사
+* [[https://github.com/ywchae1209/DBMS_CDC/blob/master/pg_spec_01.md]]
+> * stream 모드(long or large tx)
+> * 2 phase commit (2개의 tx를 1개로 tx로 처리하기)
