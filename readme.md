@@ -34,3 +34,12 @@
 * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/pg_spec_01.md]]
 > * stream 모드(long or large tx)
 > * 2 phase commit (2개의 tx를 1개로 tx로 처리하기)
+
+### todo #1 ( layer 1)
+1. stream / normal 모드 반영한 decoder
+2. 빠진 message 타입 추가 : Type, 2PC관련 type
+
+### todo #2 ( layer 2) : decoderManager
+1. relation meta이용한 처리
+2. decoded message stream 처리
+   
