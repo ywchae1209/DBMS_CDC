@@ -98,6 +98,20 @@ stream_commit_cb(...);  <-- commit of the streamed transaction
 | Truncate         |      |
 
 
+#### 4. stream 모드의 조건부 codec으로 인한 성능 제약과 해결방법 
+
+* 제약
+> * 스트림 모드의 경우, 주요 메시지들의 구성이 달라지므로,
+> * 스트림 모드 진입/종료시까지 모드에 따른 처리를 해야 함.
+> * 순차처리를 해야 하므로, 병행처리가 불가능 해짐.
+> * ( 개별 메시지 단위로 peek를 통한 판정이 가능하나, cost 커짐)
+ 
+* 해결방법
+> 1. tag정보를 이용하여 decoder 배정하는 기능 ( in single thread)
+> 2. 배정된 decoder를 이용하여 decode( 병렬 처리 여부 선택 가배정된 decoder를 이용하여 decode( 병렬 처리 여부 선택 가능)
+
+* stream segment단위 묶음도 생각해 볼 수 있으나, 메모리 요구량 부담 생김(크지는 않겠으나)
+
 ## 2 Phase Commit (2PC)
 
 분산 환경에서 원자성(Atomicity)을 보장하기 위해 사용.  
