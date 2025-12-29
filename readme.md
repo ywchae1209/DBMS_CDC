@@ -36,7 +36,7 @@
 > * 2 phase commit (2개의 tx를 1개로 tx로 처리하기)
 
 3. proto_02.md
-> * 아래 todo #1 70% 정도 구현
+> * **아래 todo #1 70% 정도 구현**
 
 ### todo #1 ( layer 1)
 1. stream / normal 모드 반영한 decoder
