@@ -37,6 +37,7 @@
 
 3. proto_02.md
 > * **아래 todo #1 70% 정도 구현**
+> * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/proto_2.md]]
 
 ### todo #1 ( layer 1)
 1. stream / normal 모드 반영한 decoder
