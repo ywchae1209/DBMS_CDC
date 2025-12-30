@@ -23,17 +23,19 @@
 ## 12/30
 
 1. **todo #1** 작업 1/2
-> 1. stream / normal 모드 반영한 decoder :: 100% (7 / 7)
-> 2. 빠진 message 타입 추가 : Type, 2PC관련 type :: 100% ( 5/ 5)
+> 1. ~stream / normal 모드 반영한 decoder :: 100% (7 / 7)~
+> 2. ~빠진 message 타입 추가 : Type, 2PC관련 type :: 100% ( 5/ 5)~
 > 3. test 방법 문서 작성 : **예정(2일 소요추정)**
 
-==> 작업 내용 : proto_2.md에 반영
-> * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/proto_2.md]]
+==> 작업 내용 
+> * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/proto_3.md]]
 
 ### todo #3 
 1. document to code ( 2~3일 소요 추정 ) 
-> 1.  PG공식 문서 : 소스코드 오류 검증
-> 2.  PG공식 문서 : 코드 주석 반영 
+> 1.  **PG공식 문서 : 소스코드 오류 검증**
+> 2.  ~PG공식 문서 : 코드 주석 반영~
+> 3. **toString : 보기좋게**
+
 
 
 ----
