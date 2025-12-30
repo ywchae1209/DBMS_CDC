@@ -1,4 +1,21 @@
 진도 기록겸.
+## Mile-stone draft
+* start : 12/22일
+* spec & 타당성 조사 : ~ 12/31일(6 MD)
+  > * PG설치 및 SQL 수작업점검
+  > * pgoutput 연동설정 및 점검
+  > * SQL 및 WAL 동작확인
+
+* 일정 확정 : ~ 1/12일(5 MD + 2 MD; buf ) 
+  > * sample SQL Data Set 준비
+  > * Binary spec 확인
+  > * 구현일정 확정
+* 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
+  > * iter #1 (PG 11)
+  > * iter #2 (PG 14)
+  > * iter #3 (PG 16)
+  > * iter #4 ( merge)
+
 
 ## 12/23
 1. CDC Data capture 절차 확인 
