@@ -4,9 +4,9 @@
 ## Mile-stone plan draft
 * start : 12/22일
 * spec & 타당성 조사 : ~ 12/31일(6 MD)
-  > * PG설치 및 SQL 수작업점검
-  > * pgoutput 연동설정 및 점검
-  > * SQL 및 WAL 동작확인
+  > * ~PG설치 및 SQL 수작업점검~
+  > * ~pgoutput 연동설정 및 점검~
+  > * ~SQL 및 WAL 동작확인~
 
 * 일정 확정 : ~ 1/12일(5 MD + 2 MD; buf ) 
   > * sample SQL Data Set 준비
@@ -43,11 +43,11 @@
 
 2. spec 조사
 * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/pg_spec_01.md]]
-> * stream 모드(long or large tx)
-> * 2 phase commit (2개의 tx를 1개로 tx로 처리하기)
+> * ~stream 모드(long or large tx)~
+> * ~2 phase commit (2개의 tx를 1개로 tx로 처리하기)~
 
 3. proto_02.md
-> * **아래 todo #1 70% 정도 구현**
+> * **아래 todo #1 70% 정도 구현반영**
 > * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/proto_2.md]]
 
 ### todo #1 ( layer 1)
@@ -60,10 +60,11 @@
 
 ----
 ## 12/26
+
 1. protoco & format : 아래 url이하의 문서들
 * [[ https://www.postgresql.org/docs/18/protocol.html ]]
 
-2. binary format 문서: web crawler
+2. ~binary format 문서: web crawler~
 * 시각적으로 보고 싶어서 만든 크롤러 코드
 * [[https://github.com/ywchae1209/DBMS_CDC/blob/master/code_scrape.md]]
   
@@ -80,11 +81,13 @@
 
 ----
 ## 12/24
-1. Capture 설정 및 binary capture 출력 코드 
+
 * [[ https://github.com/ywchae1209/DBMS_CDC/blob/master/proto.md ]]
+* ~Capture 설정 및 binary capture 출력 코드~
 
 ----
 ## 12/23
-1. CDC Data capture 절차 확인 
-* [[ https://github.com/ywchae1209/DBMS_CDC/blob/master/pg.md ]]
+
+* [[ https://github.com/ywchae1209/DBMS_CDC/blob/master/pg.md ]] 
+* ~CDC Data capture 절차 확인~
 
