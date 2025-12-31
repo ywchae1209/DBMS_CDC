@@ -21,7 +21,7 @@
 ----
 ## 12/31
 
- * Layer 1 테스트 프로그램 작성
+ * ~Layer 1 parser 테스트 프로그램 개발~
  [[https://github.com/ywchae1209/DBMS_CDC/blob/master/proto_03_test.md]]
 
 ----
