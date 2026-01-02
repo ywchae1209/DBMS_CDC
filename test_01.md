@@ -198,7 +198,7 @@ commit;
 ```sql
 -- sql
 -- 시스템 전체 최소값으로 설정
-ALTER SYSTEM SET logical_decoding_work_mem = '32kB'; 
+ALTER SYSTEM SET logical_decoding_work_mem = '64kB'; 
 SELECT pg_reload_conf();
 ```
 
