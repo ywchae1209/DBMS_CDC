@@ -1,10 +1,10 @@
 # desc
 ## in coverage
 * DDL : create/ drop/ alter/ truncate
-* DML : insert/ update/ delete / in transaction( begin~commit, begin~rollback)
+* DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
 
 ## Not-tested
-* stream mode : version 2~
+* stream mode : version 2~ 
 * 2PC(2 phase-commit) related version 3~
 
 # test 
