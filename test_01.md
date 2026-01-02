@@ -4,7 +4,7 @@
 * DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
 * stream mode : protocol version 2 이상 : insert/update/delete/ start/stop/abort/commit 
 * 2PC(2 phase-commit) related version 3 ~ : beginPrepare/Prepare/commitPrepare/RollbackPrepare/StreamPrepare
-* 기타 : Logical Message, Type Message, X-Type Message
+* 기타 : Logical Message, Type Message, X-Type Message, Origin
 
 ## PG 버전별 프로토콜과 특징
 * 서버버전
