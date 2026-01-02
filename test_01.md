@@ -3,7 +3,7 @@
 * DDL : create/ drop/ alter/ truncate
 * DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
 * stream mode : protocol version 2 이상 
-* 2PC(2 phase-commit) related version 3~
+* 2PC(2 phase-commit) related version 3 ~
 
 # Test
 ## 1. DDL
@@ -284,6 +284,7 @@ SELECT * FROM pg_create_logical_replication_slot('test_slot', 'pgoutput', false,
 ```
 
 ### 2PC 테스트 
+
 ```sql
 -- [준비] 테이블 비우기
 TRUNCATE TABLE test_logical_rep;
@@ -303,8 +304,13 @@ PREPARE TRANSACTION 'gid_test_001';
 
 -- [단계 4] 2단계: COMMIT (최종 확정)
 COMMIT PREPARED 'gid_test_001';
-
 -- 로그 확인 :  태그 'K' (Commit Prepared) 메시지 수신
+
+
+-- 또는 Rollback
+-- 2단계: ROLLBACK (철회)
+-- ROLLBACK PREPARED 'gid_test_abort_001';
+-- 로그 확인 :  태그 'r' (Rollback Prepared) 메시지 수신
 ```
 
 ### 2PC + stream mode 테스트 
@@ -327,6 +333,5 @@ PREPARE TRANSACTION 'my_prepared_trx_1';
 -- 3. 최종 확정 (또는 ROLLBACK PREPARED)
 COMMIT PREPARED 'my_prepared_trx_1';
 
--- [이 시점에서 로그 확인]
--- 'K' (Commit Prepared) 태그  메시지
-```
+-- 로그 확인 : 'K' (Commit Prepared) 태그 메시지
+````
