@@ -9,13 +9,13 @@
   > * ~SQL 및 WAL 동작확인~
 
 * 일정 확정 : ~ 1/12일(5 MD + 2 MD; buf ) 
-  > * sample SQL Data Set 준비
+  > * ~테스트방법 정리~
   > * Binary spec 확인
   > * **구현일정 확정**
 * 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
-  > * iter #1 (PG 11)
-  > * iter #2 (PG 14)
-  > * iter #3 (PG 16)
+  > * iter #1 ( binary capture: layer 1)
+  > * iter #2 ( capture manager : layer 2)
+  > * iter #3 ( misc. : conf.. )
   > * iter #4 ( merge)
 
 ----
