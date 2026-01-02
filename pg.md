@@ -51,7 +51,7 @@ docker run -d --name pg   -e POSTGRES_USER=testuser -e POSTGRES_PASSWORD=testpas
 ```cmd
 #cmd
 
-docker exec -it postgres14 psql -U testuser -d testdb
+docker exec -it pg14 psql -U testuser -d testdb
 ```
 -----
 # postgresql replication 설정하기
