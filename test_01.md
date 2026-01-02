@@ -1,9 +1,46 @@
+todo :: 2PC Messages are not tested..
+
 # desc
 ## in coverage
 * DDL : create/ drop/ alter/ truncate
 * DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
-* stream mode : protocol version 2 이상 
-* 2PC(2 phase-commit) related version 3 ~
+* stream mode : protocol version 2 이상 : insert/update/delete/ start/stop/abort/commit 
+* 2PC(2 phase-commit) related version 3 ~ : beginPrepare/Prepare/commitPrepare/RollbackPrepare/StreamPrepare
+
+## not in coverage
+* Origin
+* TypeMsg
+* X-TypeMsg 
+
+## PG 버전별 프로토콜과 특징
+* 서버버전
+```sql
+show server_version_num;
+```
+* max_prepared_transactions
+```sql
+SHOW max_prepared_transactions;
+-- 만약, 0이면, postgres.conf 변경후 pg restart.
+```
+
+1. 서버버전으로 프로토콜 버전 정할 수 있다.
+2. 2 이상의 버전이면 Stream mode on 할 수 있다. ( .withSlotOption("streaming", "on") )
+3. 3 이상의 버전이고, max_prepared_transactions가 0보다 크면 2PC 옵션 on ( .withSlotOption("two_phase", true)
+
+
+| 버전 (server_version_num) |          주요 추가 기능          | 프로토콜 버전 (proto_version) |             비고             |   |
+|:-------------------------:|:--------------------------------:|:-----------------------------:|:----------------------------:|---|
+|      PG 10 (≥100000)      | 논리적 복제 최초 도입 (pgoutput) |               1               |    I, U, D 기본 태그 지원    |   |
+|      PG 11 (≥110000)      |        TRUNCATE 복제 지원        |               1               |          T 태그 추가         |   |
+|      PG 13 (≥130000)      |   Partitioned Table 복제 최적화  |               1               |  파티션 루트 기준 복제 가능  |   |
+|      PG 14 (≥140000)      |    Binary 모드 지원, Streaming & 2-Phase Commit    |     2 또는 3 (2PC 사용시)     | S, E, P, K, r 태그 대거 추가 |   |
+|      PG 15 (≥150000)      |      Column / Row Filtering      |               4               | optional 필드 구조 변화 시작 |   |
+|      PG 16 (≥160000)      |  Standby 서버에서의 논리적 복제  |               4               | 대기 서버에서 슬롯 생성 가능 |   |
+
+* 2 PC 
+```sql
+SHOW max_prepared_transactions;
+```
 
 # Test
 ## 1. DDL
