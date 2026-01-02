@@ -21,14 +21,16 @@
 ----
 ## 1/2
 
-* parser 검증
+* ~parser 기능 검증~
 [[https://github.com/ywchae1209/DBMS_CDC/blob/master/test_01.md]]
-> * ~DDL, DML ( create/drop/alter/trucate, insert/update/delete in begin/commit, begin/rollback)~
-> * not-tested : stream mode, 2 phase commit related
+> * DDL : create/ drop/ alter/ truncate
+> * DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
+> * stream mode : protocol version 2 이상 : insert/update/delete/ start/stop/abort/commit 
+> * 2PC(2 phase-commit) related version 3 ~ : beginPrepare/Prepare/commitPrepare/RollbackPrepare/StreamPrepare
+> * 기타 : Logical Message, Type Message, X-Type Message, Origin
 
 ### todo #3 
-1. document to code ( 2~3일 소요 추정 ) 
-> 1.  **PG공식 문서 : 소스코드 오류 검증 및 debugging**    <<<< 1/2~
+> 1.  **PG공식 문서 : 문서 검증 :: next week
 
 ----
 ## 12/31
