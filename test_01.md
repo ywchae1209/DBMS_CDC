@@ -426,11 +426,8 @@ INSERT INTO test_type_trigger (status) VALUES ('PROCESSING');
 -- 6. 커밋하여 스트림 종료 및 전송 확정
 COMMIT;
 ```
-### Origin
 
-* Origin :  원격 노드에서 발생한 prepared transaction을 재적용할 때
-    > * PG15이상. two_phase=ture  
-    > * 2PC(분산트랜잭션)환경에서 다른 노드에 prepare transaction을 실행한 뒤, 복제받는 쪽에서 확인할 수 있다고 함.
+### Origin
 
 * **양방향 복제** CDC에서 필수적일 듯.
 1. Origin 등록: SELECT pg_replication_origin_create('my_app_node_a');
