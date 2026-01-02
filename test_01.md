@@ -1,16 +1,10 @@
-todo :: 2PC Messages are not tested..
-
 # desc
 ## in coverage
 * DDL : create/ drop/ alter/ truncate
 * DML : insert/ update/ delete / in transaction( begin/commit, begin/rollback)
 * stream mode : protocol version 2 이상 : insert/update/delete/ start/stop/abort/commit 
 * 2PC(2 phase-commit) related version 3 ~ : beginPrepare/Prepare/commitPrepare/RollbackPrepare/StreamPrepare
-
-## not in coverage
-* Origin
-* TypeMsg
-* X-TypeMsg 
+* 기타 : Logical Message, Type Message, X-Type Message
 
 ## PG 버전별 프로토콜과 특징
 * 서버버전
@@ -370,6 +364,96 @@ PREPARE TRANSACTION 'my_prepared_trx_1';
 
 -- 3. 최종 확정 (또는 ROLLBACK PREPARED)
 COMMIT PREPARED 'my_prepared_trx_1';
-
 -- 로그 확인 : 'K' (Commit Prepared) 태그 메시지
 ````
+
+## others
+
+
+### Logical Message
+사용자가 발생시킨 메시지
+```sql
+    SELECT pg_logical_emit_message(false, 'my_prefix', 'Hello logical message!');
+```
+
+* slot 설정에 아래를 추가해 두어야 한다.
+```
+   .withSlotOption("messages", true)  // get logical message ('M')
+```
+ 
+
+### TypeMsg
+새로운 타입을 만들었을 때 ( 아래의 `mood`)
+```sql
+    -- 1. 새로운 커스텀 타입(Enum 등) 생성 (기존에 없던 타입이어야 함)
+      CREATE TYPE mood AS ENUM ('happy', 'sad', 'ok');
+  
+    -- 2. 해당 타입을 사용하는 테이블 생성 및 복제 설정
+      CREATE TABLE test_mood (id int PRIMARY KEY, current_mood mood);
+      ALTER PUBLICATION io_flux_pub ADD TABLE test_mood;
+
+    -- 3. 데이터 삽입 (이 시점에 복제 스트림에서 'Y' 태그가 발생함)
+      INSERT INTO test_mood VALUES (1, 'happy');
+```
+
+### X-TypeMsg (feat Logical Message )
+stream 모드 중간에 Type Message 발생하는 경우.
+
+* test_logical_replication 테이블이 있고, io_flux_pub을 만들어 둔 상태
+ 
+```sql
+-- 1. 트랜잭션 시작 (스트리밍 유도)
+BEGIN;
+
+-- 2. 스트림 임계치(보통 64KB)를 넘기기 위해 대량의 메시지 발생
+-- repeat 함수를 써서 큰 데이터를 여러 번 삽입.
+SELECT pg_logical_emit_message(true, 'fill', repeat('A', 10000)) FROM generate_series(1, 10);
+
+-- 3. [핵심] 스트림 세션이 끊기지 않은 상태에서 새로운 타입 생성
+-- (기존에 없던 타입을 만들어야 서버가 Y 메시지를 던짐)
+CREATE TYPE replication_status AS ENUM ('START', 'PROCESSING', 'FINISH');
+
+-- 4. 해당 타입을 사용하는 테이블을 즉석에서 생성
+-- io_flux_pub가 ALL TABLES용이면 자동으로 추가.
+CREATE TABLE test_type_trigger (
+    id serial PRIMARY KEY,
+    status replication_status
+);
+
+-- 5. 데이터 삽입 (이 시점에 Y 메시지와 R 메시지가 스트림 중간에 삽입)
+INSERT INTO test_type_trigger (status) VALUES ('PROCESSING');
+
+-- 6. 커밋하여 스트림 종료 및 전송 확정
+COMMIT;
+```
+### Origin
+
+* Origin :  원격 노드에서 발생한 prepared transaction을 재적용할 때
+    > * PG15이상. two_phase=ture  
+    > * 2PC(분산트랜잭션)환경에서 다른 노드에 prepare transaction을 실행한 뒤, 복제받는 쪽에서 확인할 수 있다고 함.
+
+* **양방향 복제** CDC에서 필수적일 듯.
+1. Origin 등록: SELECT pg_replication_origin_create('my_app_node_a');
+2. 세션 연결: CDC가 DB에 데이터를 밀어 넣을 때 세션 처음에 SELECT pg_replication_origin_session_setup('my_app_node_a');를 실행
+3. 결과: 이렇게 하면 해당 세션이 발생시키는 모든 WAL에는 'my_app_node_a'라는 Origin 태그가 붙게 되고, 
+   다른 쪽 CDC가 이를 보고 필터링할 수 있게 됨.
+
+```sql
+-- [Step 1] Origin 식별자 생성 (DB에 한 번만 등록하면 됨.)
+SELECT pg_replication_origin_create('io_flux_node_a');
+
+-- [Step 2] 현재 세션을 해당 Origin에 연결 (핵심 단계)
+-- 이 명령 이후부터 해당 세션의 모든 트랜잭션에는 Origin 정보가 붙음
+SELECT pg_replication_origin_session_setup('io_flux_node_a');
+
+-- [Step 3] 데이터 삽입
+-- 이 트랜잭션은 'O' 태그와 함께 복제 스트림으로 방출
+INSERT INTO test_logical_rep (t_text)        VALUES ('Logical_origin');       
+
+-- [Step 4] 트랜잭션 종료 및 확인
+-- 트랜잭션을 명시적으로 사용할 경우 더 명확하게 보임
+BEGIN;
+--SELECT pg_replication_origin_session_setup('io_flux_node_a');
+INSERT INTO test_logical_rep (t_text)        VALUES ('origin!!!!!');       
+COMMIT;
+```
