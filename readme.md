@@ -19,6 +19,12 @@
   > * iter #4 ( merge)
 
 ----
+## 1/3
+
+* Large 컬럼, Key/Index없는 테이블 처리방법 조사  
+  [[https://github.com/ywchae1209/DBMS_CDC/blob/master/toast(lob).md]]
+
+----
 ## 1/2
 
 * ~parser 기능 검증~
