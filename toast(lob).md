@@ -2,10 +2,13 @@
 
 * PG에서 일정 크기보다 큰 컬럼을 저장하는 방식 (오라클의 LOB 유사)
 * 결론 
-> 1. 대부분 조치가능하나, 성능상 문제될 상황 있음( 확인필요)
+> 1. 대부분 조치가능하나, 지원 제약상황 존재. 성능상 문제될 상황 있음( 확인필요)
 > 2. 다운스트림 앞에 캐싱 layer 추가 필요할 가능성 높음 (추가 고민 필요, key/index없는 테이블)
 
-* 의견 : 오라클보다는 깔끔하게 해결가능 할 듯. ( LOB, key/index없는 테이블)
+* 의견
+> 1. 오라클보다는 깔끔하게 해결가능 할 듯. ( LOB )
+> 2. key/index없는 테이블의 oldRow에 Unchanged toast나올 경우는 지원 곤란( 다른 솔루션도 마찬가지)
+> 3. 지원 제한 테이블들 추출하는 유틸리티 만들어야 할 듯.
 
 ## 1. 설명
 1. 큰 컬럼이 생성/갱신될 때, 그 컬럼의 값이 크더라도 capture data에 포함된다.(Toast로 별도 저장되더라도)
@@ -113,17 +116,14 @@ WHERE a.attnum > 0                  -- 시스템 컬럼(ctid, tableoid 등) 제�
 ```
 
 * out sample
-
-| 버전   (server_version_num) | 프로토콜 버전 (proto_version) |                      주요 추가 기능                      |             비고             |   |
-|:---------------------------:|:-----------------------------:|:--------------------------------------------------------:|:----------------------------:|---|
-| PG 10   (≥100000)           | 1                             | 논리적 복제 최초 도입 (pgoutput), 기본 I/U/D   태그 지원 | 최초 버전                    |   |
-| PG 11   (≥110000)           | 1                             | TRUNCATE 복제 지원                                       | T 태그 추가                  |   |
-| PG 13   (≥130000)           | 1                             | Partitioned Table 복제 최적화                            | 파티션 루트 기준 복제 가능   |   |
-| PG 14   (≥140000)           | 2                             | Binary 모드 지원, Streaming 옵션 추가                    | S, E, P, K, r 태그 추가      |   |
-| PG 15   (≥150000)           | 3                             | Two-Phase Commit 지원, Column/Row Filtering 도입         | 필터링 기능 최초 추가        |   |
-| PG 16   (≥160000)           | 4                             | Standby 서버에서 논리적 복제 가능, 필터링 구조 확장      | 대기 서버에서 슬롯 생성 가능 |   |
-| PG 17   (≥170000)           | 4                             | 성능 최적화 및 확장 기능 유지                            | 최신 안정화 버전             |   |
-
+* 
+| schema_name | table_name    | column_name     | data_type | storage_type                       |
+|-------------|---------------|-----------------|-----------|------------------------------------|
+| bbs         | posts         | content         | text      | extended (압축+외부저장: TOAST )   |
+| bbs         | posts         | attachments     | bytea     | extended (압축+외부저장: TOAST )   |
+| crm         | customer_info | metadata        | jsonb     | extended (압축+외부저장: TOAST )   |
+| crm         | customer_info | profile_image   | bytea     | external (비압축+외부저장: TOAST ) |
+| public      | api_logs      | request_payload | text      | extended (압축+외부저장: TOAST )   |
 
 ### LOB vs Toast
 
@@ -136,6 +136,8 @@ WHERE a.attnum > 0                  -- 시스템 컬럼(ctid, tableoid 등) 제�
 | 성능 최적화    | SecureFile LOB: 압축, 암호화, Deduplication 지원            | TOAST: 압축(PGLZ), 외부 저장, 필요 시만 분리                        |
 | 제약           | WHERE 절에서 LOB 직접 사용 제한적 (주로 LENGTH, IS NULL 등) | TOAST 컬럼은 WHERE 절에서 자유롭게 사용 가능                        |
 | 최대 크기      | 수 TB~수십 TB (버전에 따라 8TB~128TB)                       | 최대 1GB per field (실제 TOAST로 분리 저장)                         |
+
+
 
 
 * 사용자 관점
