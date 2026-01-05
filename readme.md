@@ -25,10 +25,21 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
+---
+## 1/5
+
+* ~메시지 구간 구획을 위한 조사~ ( stream-structure/tag 용 )   
+[[https://github.com/ywchae1209/DBMS_CDC/blob/master/envelope.md]]
+
+* bugfix  
+  ~DeltaFlow_0.1.2 : Truncate decoder (공식문서 반영 및 테스트)~
+
+* **Todo: 구획정보를 담은 envelope 처리**
+
 ----
 ## 1/3
 
-* Large 컬럼, Key/Index없는 테이블 처리방법 조사  
+* ~Large 컬럼, Key/Index없는 테이블 처리방법 조사~  
   [[https://github.com/ywchae1209/DBMS_CDC/blob/master/toast(lob).md]]
 
 ----
