@@ -23,6 +23,7 @@
 
 * out-of-scope
 > 1. 설정관련 처리
+> 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ----
 ## 1/3
