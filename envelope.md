@@ -8,7 +8,10 @@
 3. **Todo : 구간메시지(4유형)과 독립메시지(1유형)을 합친 5가지 유형의 Envelope을 정의할 예정**
 
 * note) 간과하기 쉬운 점  
-> Envelope을 만들기 위해서는 binary의 decoding이 선행되어야 함. (rapid 분류구현 불가)
+> 1. Envelope을 만들기 위해서는 binary의 decoding이 선행되어야 함. (rapid 분류구현 불가)  
+> 2. 후처리의 1단계에 해당한다고 볼 수 있는데,  
+>    오류가능성 최소화를 위해 최대한 Binary Parsing근처에서 처리하도록 할 예정.
+> 3. pool이나 buffer없이 최대한 iterator방식으로 처리하도록 한다.(캐싱은 Next-layer에서)     
 
 ---
 
