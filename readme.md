@@ -14,12 +14,13 @@
   > * **구현일정 확정**
 * 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
   > 1. ~pgoutput binary 파서~ : **DeltaFlow_0.1.x**
-  > 2. preprocessing: stream-structure/tag ( 1~2M ) : **DeltaFlow_0.2.x**
-  > 3. stateful processing (table/col meta caching) ( 2~4 MD) : **DeltaFlow_0.3.x**
-  > 4. serde : serialize & deserialize ( 2~ 4MD) : **DeltaFlow_0.4.x**
-  > 5. network/distribute : akka ( 5~6 MD) : **DeltaFlow_0.5.x**
+  > 2. preprocessing: stream-structure/tag ( 2 - 3MD ) : **DeltaFlow_0.2.x**
+  > 3. stateful processing (table/col meta caching) ( 2 -4 MD) : **DeltaFlow_0.3.x**
+  > 4. serde : serialize & deserialize ( 2 - 4MD) : **DeltaFlow_0.4.x**
+  > 5. network/distribute : akka ( 5 - 6 MD) : **DeltaFlow_0.5.x**
   > 6. 필수설정 ( 3 ~ 4MD) : **DeltaFlow_0.6.x**
-  > * 각 단계는 실행가능한 executable로 (x.1.x : middle version으로 표기) 
+  >    
+  > * 각 단계는 **실행가능한 executable**로 (x.1.x : middle version으로 표기) 
 
 * out-of-scope
 > 1. 설정관련 처리
