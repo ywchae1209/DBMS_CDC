@@ -27,6 +27,11 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/8
+
+* DeltaFlow_0.2 테스트 및 performance optimizing
+
+---
 ## 1/7
 
 * ~**구획정보를 담은 envelope 처리**~
