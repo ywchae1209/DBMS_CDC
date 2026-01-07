@@ -27,6 +27,40 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+## 1/7
+
+* **구획정보를 담은 envelope 처리**
+
+### Envelope mode (안)
+| 모드          | 대상 메시지 (태그) | 성격                    | 후처리 액션 (Assembler)                             |
+|---------------|--------------------|-------------------------|-----------------------------------------------------|
+| Independent   | 'R', 'Y', 'O', 'M' | 구간 없음 (스키마/타입) | 즉시 실행 (글로벌 캐시 업데이트)                    |
+| Normal        | 'B' ~ 'C', 'A'     | 일반 트랜잭션 구간      | Active Buffer에 적재 후 Commit 시 Apply             |
+| Stream        | 'S' ~ 'c', 'E'     | 대용량 스트림 구간      | Stream Buffer에 조각 적재 후 Commit 시 Apply        |
+| Prepare       | 'K' ~ 'P'          | 2PC 준비 구간           | Active Buffer에 적재 후 'P' 수신 시 2PC Pool로 이동 |
+| PrepareFinish | 's', 'r'           | 2PC 최종 신호           | 2PC Pool에서 데이터를 꺼내 최종 확정/삭제           |
+
+
+### Note for next-layer
+1. Stream pool, 2pc pool 2개는 있어야 함.
+> 1. Stream pool : interleaving 될 수 있으므로
+> 2. 2pc pool : prepare 이후 ~ 확정(commit prepare/rollback preapre)사이에 시각차 존재
+> 3. normal pool : interleave없이 연속적이므로 pooling없이 반영가능하니 pooling여부는 선택적
+> 4. Indepenent와 PrepareFinish: pooling할 필요 없을 듯. 
+
+2. Stream pool에서 2pc pool로의 이동
+> Stream Prepare는 Stream 모드의 끝 정보 중 하나인데,
+> 이 메시지를 만나면 해당 Stream 트랜잭션의 메시지들은 2pc pool로 이동
+
+3. clean-up by TTL 필요할 듯.
+> 1. stream pool : TTL 5 - 10분정도
+> 2. 2pc pool : TTL 수 시간 정도 필요할 듯 : 1시간 = 경고, 12시간-24시간 = 삭제 이런 식?
+
+* 2PC 의 TTL이 오래 걸리는 경우
+> 1. 사람이 승인한 후, 종결되도록 한 경우
+> 2. 외부 코디네이터 장애 후, 복귀까지 기다려야 할 경우.
+
+---
 ## 1/5
 
 * ~메시지 구간 구획을 위한 조사~ ( stream-structure/tag 용 )   
