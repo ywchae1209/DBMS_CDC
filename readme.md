@@ -29,7 +29,7 @@
 ---
 ## 1/7
 
-* **구획정보를 담은 envelope 처리**
+* ~**구획정보를 담은 envelope 처리**~
 
 ### Envelope mode (안)
 | 모드          | 대상 메시지 (태그) | 성격                    | 후처리 액션 (Assembler)                             |
