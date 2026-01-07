@@ -60,6 +60,54 @@
 > 1. 사람이 승인한 후, 종결되도록 한 경우
 > 2. 외부 코디네이터 장애 후, 복귀까지 기다려야 할 경우.
 
+### schema(relation 정보) 캐싱 
+
+* 가능한 상황
+> * 하나의 트랜잭션 내에서 alter 가 여러번 발생할 경우 (노멀 또는 스트림 모드)
+> * 트랜잭션내에 relation 정보가 없는 경우
+
+* 해야할 조치
+> 1. XID내의 정보는 순차처리하면서 해당 XID용 schema 캐시 생성
+> 2. 1의 처리가 commit되면 global 캐시 반영 + 해당 XID용 schema 캐시 정리
+> 3. 1의 처리가 중단되면 해당 XID용 schema 캐시만 정리
+> 4. schema 정보 포함되지 않은 트랜잭션은 global 캐시에서 schema 찾아서 적용
+
+* XID schame 캐시
+> * 하나의 트랜잭션이 스트림 모드로 여러 세그먼트로 쪼개지는 경우,
+> * 세그먼트들의 데이터 변환을 병렬로 하고 싶은데....
+> * 세그먼트들을 병행 처리하는 데에는 순차처리 제약이 생기니 문제네....
+> * 단일 세그먼트 내에서 병렬 처리하는 식으로 해야 할 듯.
+
+* global schema 캐시
+> * Map[RelationId, TreeMap[LastUpdatedLsn, Relation]]
+> * schema 찾기 = RelationID 찾고, 현재 Lsn보다 이전에 update된 최종 Relation찾기
+
+* 테스트 sql
+```sql
+BEGIN;
+
+-- [Phase 1] 기존 구조로 데이터 입력 (컬럼 9개)
+INSERT INTO test_logical_rep (t_text, t_int, t_boolean)
+VALUES ('Phase 1: Original', 10, true);
+
+-- [Phase 2] 구조 변경: 새로운 컬럼 추가 (ADD)
+-- 복제 스트림에 첫 번째 'R' 메시지 발생 (컬럼 10개)
+ALTER TABLE test_logical_rep ADD COLUMN t_temp_marker TEXT;
+
+-- 변경된 구조로 데이터 입력
+INSERT INTO test_logical_rep (t_text, t_int, t_temp_marker)
+VALUES ('Phase 2: Added Column', 20, 'Temporally added');
+
+-- [Phase 3] 구조 원복: 추가했던 컬럼 삭제 (DROP)
+-- 복제 스트림에 두 번째 'R' 메시지 발생 (컬럼 9개로 원복)
+ALTER TABLE test_logical_rep DROP COLUMN t_temp_marker;
+
+-- 다시 원복된 구조로 데이터 입력
+INSERT INTO test_logical_rep (t_text, t_int, t_boolean)
+VALUES ('Phase 3: Back to Original', 30, false);
+
+COMMIT;
+```
 ---
 ## 1/5
 
