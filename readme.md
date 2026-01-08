@@ -31,6 +31,8 @@
 
 * DeltaFlow_0.2 테스트 및 performance optimizing
 
+> 1. 약 20~23 만EPS : capture & tagging
+
 ---
 ## 1/7
 
