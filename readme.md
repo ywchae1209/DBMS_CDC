@@ -15,7 +15,7 @@
 * 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
   > 1. ~pgoutput binary 파서~ : **DeltaFlow_0.1.x**
   > 2. ~preprocessing: stream-structure/tag~ : **DeltaFlow_0.2.x**
-  > 3. stateful processing (table/col meta caching) ( 2 -4 MD -> 1주-2주 정도)  : **DeltaFlow_0.3.x**
+  > 3. stateful processing (table/col meta caching) ( 2 -3주 정도)  : **DeltaFlow_0.3.x**
   > 4. serde : serialize & deserialize ( 2 - 4MD) : **DeltaFlow_0.4.x**
   > 5. network/distribute : akka ( 5 - 6 MD) : **DeltaFlow_0.5.x**
   > 6. 필수설정 ( 3 ~ 4MD) : **DeltaFlow_0.6.x**
@@ -31,7 +31,17 @@
 
 * DeltaFlow_0.2 테스트 및 performance optimizing
 
-> 1. 약 20~23 만EPS : capture & tagging
+### 성능 테스트
+> 약 20~25 만EPS
+* 1 단계의 처리: capture & tagging
+
+> 1. 한계 - 순차처리방식의 limit-throughput 정도 의미
+> 2. IO - binary 읽기 : bulk 처리 ( 128MB 또는 1024메시지 )
+> 3. IO - 주 bottleneck은 `readPending`(API함수)
+> 4. 처리 - binary decode는 후처리에서 하도록 함 (decoder 배정만)
+> 5. 처리 - binary 복사는 view로 처리( near zero-cost-copy)
+> 6. note - Timestamp는 2단계에서 해야 할 듯
+> 7. note - `setAppliedLSN`, `setFlushedLSN` 호출 : notify PG to clean-up (API 함수)
 
 ---
 ## 1/7
