@@ -31,6 +31,11 @@
 
 * 구현방안 구상
 
+### next week ( ~ 1/16일)
+> * Chronicle Queue를 이용한 stream-segment interleaving Proto-typing
+> * Relation Map State 처리는 그 이후에.
+
+
 ## stateful processing 에서 해결해야 할 과제
 
 ### 1. Relation State Map 
