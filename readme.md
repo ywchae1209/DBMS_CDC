@@ -27,6 +27,51 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/9
+
+* 구현방안 구상
+
+## stateful processing 에서 해결해야 할 과제
+
+### 1. Relation State Map 
+* 배경
+> 1. Relation은 컬럼 데이터를 해석 기준정보를 담고 있음(Table/Column Schema)
+> 2. Relation을 식별정보로 RelationID를 갖고 있으나, 버전구분정보는 없음 --> **버전부여해야 함.**
+> 3. Relation은 테이블 **변경이 없는 경우에도** 전송되기도 함 --> **변경여부 점검 필요**
+> 4. Alter Table인 경우, 변경된 결과 Schema만 담고 있음 --> **변경내용 heuristic하게 판정 + 사용자 설정**
+> 5. 1개의 트랜잭션내에서 여러번 Alter Table할 수도 있고, Rollback하면 Alter Table이력은 버려야 함.
+> 6. 위와 같은 특성으로 순차처리를 해야하는 제약존재 (병렬처리 제약)
+
+* 방안 : 일종의 State Monadic 처리하면 될 듯.
+> 1. 버전정보 : 메시지 일련번호를 Relation 버전으로.
+> 2. 해당 Transaction 내에서만 유효한 Local Relation State Map
+> 3. Global Map 관리
+> 4. 병렬처리 제약이 됨. --> 트랜젝션 내에서의 local 병행처리로.
+
+### 2. Stream 모드의 Interleaving
+* 배경
+> 1. Stream모드는 한 트랜잭션을 Segment단위로 묶어서 전송함
+> 2. 필요한 Segment가 모두 전송된 후, Commit/Abort가 전송됨.
+> 3. Segment들 사이에 일반 트랜잭션이나 다른 트랜잭션의 Segment가 섞일 수 있음
+> 4. 섞일 수 있는 스트림모드 트랜잭션의 최대 숫자는 DBMS의 동시접속 수 만큼.
+> 5. Stream모드 on/off 가능한데, 처리속도 관점에서는 필수일듯
+> 6. 섞인 트랜잭션들을 처리할 방안 필요.
+
+* 필요한 기능 -- 
+> 1. **Stream 세그먼트들을 pooling**한 후, Stream Abort/Commit에 따라 처리
+* pooling을 in-memory와 Disk 혼합해서 처리해야 하므로, 복잡/불안정해질 수 있음
+* **Chronicle Queue**(jvm base)를 Embed해서 처리 --> **proto코딩으로 점검 필요**
+* 참고: RocksDB(C++)도 있으나, 지원OS제한으로 drop.
+
+> 2. 타겟 DB에 **여러 connection**을 이용한 **semi-동시적용 시나리오**
+
+> 3. 장애 시 replay등의 시나리오 따져봐야...
+* kafka같은 메시지 브로커를 이용해서 replay 가능하도록 해야 할 듯.
+
+### 3. 2PC 트랜잭션
+  
+
+---
 # 1/8
 
 * DeltaFlow_0.2 테스트 및 performance optimizing
