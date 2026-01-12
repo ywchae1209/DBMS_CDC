@@ -27,9 +27,17 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/12
+
+* 아래와 같은 2개의 모듈로 구성할까 싶음. (검토 중)
+> * TxQueue (순서의존적 처리필요한 모든 메시지)
+> * SgSpooler (Stream Segment용)
+
+
+---
 # 1/9
 
-* 구현방안 구상
+* 구현방안 구상 
 
 ### next week ( ~ 1/16일)
 > * Chronicle Queue를 이용한 stream-segment interleaving Proto-typing
