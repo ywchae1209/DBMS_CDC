@@ -27,11 +27,19 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/13
+
+* Stateful 처리 코드
+> 1. ~TxQueue용 TxState 구현 : Done~
+> 2. ~TxSpool용 TxState 구현 : Done~
+> 3. 1,2 경우가 혼합된 경우의 TxState : **later**
+
+---
 # 1/12
 
 * 아래와 같은 2개의 모듈로 구성할까 싶음. (검토 중)
 > * TxQueue (순서의존적 처리필요한 모든 메시지)
-> * SgSpooler (Stream Segment용)
+> * TxSpool (Stream Segment용)
 
 
 ---
