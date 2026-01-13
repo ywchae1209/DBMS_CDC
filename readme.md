@@ -27,12 +27,17 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/14
+
+* fs2(또는 Akka) library내에서 사용할 있도록 State처리 코드 구현 예정
+
+---
 # 1/13
 
-* Stateful 처리 코드
+* Stateful 처리 코드 proto
 > 1. ~TxQueue용 TxState 구현 : Done~
 > 2. ~TxSpool용 TxState 구현 : Done~
-> 3. 1,2 경우가 혼합된 경우의 TxState : **later**
+
 
 ---
 # 1/12
