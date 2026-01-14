@@ -87,7 +87,7 @@ EXECUTE FUNCTION log_ddl_info();
 > 3. 이력테이블 추가된 만큼의 성능 cost
 > 4. 변경시점시의 Table정보와 matching시 불일치 발생할 가능성 존재 (lsn같은 필드 필수)
 
-* 확인할 사항 :: Oracle경우도 마찬가지
+* **확인할 사항 :: Oracle(AFC)도 확인필요**
 > **Rollback된 트랜젝션 내에 있었던 DDL**이 기록되는 지 여부와 그때의 Message처리
 
 * 장점
