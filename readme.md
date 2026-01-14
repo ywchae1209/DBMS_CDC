@@ -30,9 +30,10 @@
 # 1/14
 
 * fs2(또는 Akka) library내에서 사용할 있도록 State처리 코드 구현 예정
-
 > 1/13일 버전은 fs2/akka위에 사용 곤란하여.. ㅠ
 
+* ~DDL 추적방법 조사~
+> [[https://github.com/ywchae1209/DBMS_CDC/blob/master/pg_ddl.md]]
 
 ### 참고 
 * [[https://github.com/2ndQuadrant/pglogical]] PG용 logical 복제 최초(?)로 내놓은 회사의 code 
