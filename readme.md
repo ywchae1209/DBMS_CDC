@@ -33,6 +33,12 @@
 
 > 1/13일 버전은 fs2/akka위에 사용 곤란하여.. ㅠ
 
+
+### 참고 
+* [[https://github.com/2ndQuadrant/pglogical]] PG용 logical 복제 최초(?)로 내놓은 회사의 code 
+* EnterpriseDB(2004-) :: 오픈 소스 데이터베이스 PostgreSQL을 기반으로 소프트웨어와 서비스를 제공하는 미국 회사이며 Postgres에 가장 큰 기여를 하는 회사
+* 기능 및 제약사항 등 참고할 점 있을 듯.
+
 ---
 # 1/13
 
