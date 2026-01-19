@@ -27,6 +27,21 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/19
+
+  * Que Size문제 (계속)
+
+---
+# 1/15
+
+* Chronicle Queue 테스트 ( Private용도의 Kafka유사)  
+  --> 저장size 과다 issue(쉽게 GB가 넘어감)  
+  --> 어떻게 해결하는 게 좋을 지.. 고민 중.  
+  (전용 serde 코드를 짜자니..관리issue있을 것 같기도 하고.)  
+
+
+
+---
 # 1/14
 
 * fs2(또는 Akka) library내에서 사용할 있도록 State처리 코드 구현 예정
@@ -39,6 +54,7 @@
 * [[https://github.com/2ndQuadrant/pglogical]] PG용 logical 복제 최초(?)로 내놓은 회사의 code 
 * EnterpriseDB(2004-) :: 오픈 소스 데이터베이스 PostgreSQL을 기반으로 소프트웨어와 서비스를 제공하는 미국 회사이며 Postgres에 가장 큰 기여를 하는 회사
 * 기능 및 제약사항 등 참고할 점 있을 듯.
+
 
 ---
 # 1/13
