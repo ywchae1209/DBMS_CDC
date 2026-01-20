@@ -29,12 +29,21 @@
 ---
 # 1/20
 
-* structural component (구조모듈)
+* 작업한 거
+> * **Serde** :: TaskResult용 FlatBuffer 정의파일(.fbs)과 생성코드 사용한 serde 모듈 + 테스트 및 디버깅
+> * **PersistQue** :: local file 큐 (Serde포함) ; 잡다한 처리 추가해야 될 듯.
+> * **PersistQueSource** :: Stream Source Processer (PersistQue to message Stream)
+> * **PersistQueSink** :: Stream Sink Processer ( message Stream to PersistQue)
 
+* 내일할 것
+> * over-Network으로 Stream-Pipeline연결짓기.
+
+
+### Todo-list structural component (구조모듈)
 * 아래의 구조모듈 선택지별 비교 및 optimize
    ( 구현일정상 3단계 일부 ~ 5단계 )  
 > 1. local que ( Chronicle Que + Serde )
-> 2. Stream processing ( Mulit-threading )
+> 2. Stream processing
 > 3. N/W processing
 > 4. Spooling 
 
