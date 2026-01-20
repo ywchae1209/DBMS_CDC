@@ -27,9 +27,23 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/20
+
+* structural component (구조모듈)
+
+* 아래의 구조모듈 선택지별 비교 및 optimize
+   ( 구현일정상 3단계 일부 ~ 5단계 )  
+> 1. local que ( Chronicle Que + Serde )
+> 2. Stream processing ( Mulit-threading )
+> 3. N/W processing
+> 4. Spooling 
+
+---
 # 1/19
 
-  * Que Size문제 (계속)
+* Que Size문제 (계속)  
+ > FlatBuffers ( protobuf 보다 성능/압축률 좋다는 Serde format) proto coding.
+
 
 ---
 # 1/15
