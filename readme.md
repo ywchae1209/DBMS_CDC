@@ -35,6 +35,8 @@
 > * **PersistQueSource** :: Stream Source Processer (PersistQue to message Stream)
 > * **PersistQueSink** :: Stream Sink Processer ( message Stream to PersistQue)
 
+* Note: Akka는 유료라이선스로 변경되서, Pekko (akka의 오픈소스 fork버전) 사용.
+
 * 내일할 것
 > * over-Network으로 Stream-Pipeline연결짓기.
 
