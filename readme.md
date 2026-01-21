@@ -59,6 +59,10 @@ MessagePack은 그 나름대로 유리한 점이 있으나,
 제대로 처리한다고 가정하면 IDL 기반 포맷이 맞음. (뽀대도 나고) 
 ```
 
+*  Note: for DDL Parser
+> *  DDL 문법을 파악하는게 숙제인데... 찾아보니 python 라이브러리가 있어서 기록차.
+> * [[https://github.com/xnuinside/simple-ddl-parser?tab=readme-ov-file]]
+
 ---
 # 1/20
 
