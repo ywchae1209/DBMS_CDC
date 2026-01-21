@@ -15,10 +15,11 @@
 * 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
   > 1. ~pgoutput binary 파서~ : **DeltaFlow_0.1.x**
   > 2. ~preprocessing: stream-structure/tag~ : **DeltaFlow_0.2.x**
-  > 3. stateful processing (table/col meta caching) ( 2 -3주 정도)  : **DeltaFlow_0.3.x**
+  > 3. stateful processing (~table/col meta caching~) ( 2 -3주 정도)  : **DeltaFlow_0.3.x**
   > 4. serde : serialize & deserialize ( 2 - 4MD) : **DeltaFlow_0.4.x**
   > 5. network/distribute : akka ( 5 - 6 MD) : **DeltaFlow_0.5.x**
-  > 6. 필수설정 ( 3 ~ 4MD) : **DeltaFlow_0.6.x**
+  > 6. apply( stream 모드 spooler ) : custom(? 1 ~ 2Week) : **DeltaFlow_0.6.x**
+  > 7. 필수설정 ( 3 ~ 4MD) : **DeltaFlow_0.7.x**
   >    
   > * 각 단계는 **실행가능한 executable**로 (x.1.x : middle version으로 표기) 
 
@@ -49,7 +50,8 @@
 * size overhead
 > * FlatBuffers는 메시지당 200byte 정도였음. (해본 결과. 수천만건 정도는 감안해야 되니.. overhead가 크게 느껴짐.)
 > * MessagePack은 30byte언더리 일듯 (추정; 안해봤음)
-> * ProtoBuf는 작업 중 
+> * **ProtoBuf**는 40byte 언더리(테스트 해본 결과; 꽤 괜찮음)  
+>   file Que에 read/write 속도테스트( 작은 많은 메시지) = 약 25만 EPS 정도 (1,000만건 ; 40초 가량, filesize는 1.3 GB 정도)
 
 ```
 MessagePack은 그 나름대로 유리한 점이 있으나,
