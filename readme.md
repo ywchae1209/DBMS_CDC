@@ -35,10 +35,11 @@
 
 * 대상
 > 1. SpeTest : test code base 변경 : fs2 --> pekko
-> 2. PersistQue : refactoring
-> 3. PersistQueSource
-> 4. PersistQueSink
-> 5. QueRelay
+> 2. PgCodecs
+> 3. PersistQue
+> 4. PersistQueSource
+> 5. PersistQueSink
+> 6. QueRelay
 
 
 ---
