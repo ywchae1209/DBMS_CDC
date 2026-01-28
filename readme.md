@@ -28,6 +28,20 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/28
+
+## 중간 정돈/조정
+* library 공부하면서 급하게 작성된 코드 정돈겸 refactoring
+
+* 대상
+> 1. SpeTest : test code base 변경 : fs2 --> pekko
+> 2. PersistQue : refactoring
+> 3. PersistQueSource
+> 4. PersistQueSink
+> 5. QueRelay
+
+
+---
 # 1/27
 
 ## 2. TxLog streaming over TCP
@@ -43,23 +57,10 @@
 2. Consideration 
  - firewall NACL 등으로 일방향 connect 시나리오
  - skipTo offset : offset 저장은 client역
- - 
----
-# 1/28
-
-## 중간 정돈/조정
-* library 공부하면서 급하게 작성된 코드 정돈겸 refactoring
-
-* 대상
-> 1. SpeTest : test code base 변경 : fs2 --> pekko
-> 2. PersistQue : refactoring
-> 3. PersistQueSource
-> 4. PersistQueSink
-> 5. QueRelay
 
 
 ---
-# ~ 1/27
+# ~ 1/26
 
 ## 1. serde format: ProtoBuf  
 * 완료
