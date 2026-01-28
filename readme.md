@@ -28,15 +28,15 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
-# 1/28
+# 1/28 ~ 1/30
 
 ## 중간 정돈/조정
 * library 공부하면서 급하게 작성된 코드 정돈겸 refactoring
 
 * 대상
-> 1. SpeTest : test code base 변경 : fs2 --> pekko
+> 1. SpeTest : code base 변경 : fs2 --> pekko
 > 2. PgCodecs
-> 3. PersistQue
+> 3. PersistQue 
 > 4. PersistQueSource
 > 5. PersistQueSink
 > 6. QueRelay
