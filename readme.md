@@ -28,6 +28,50 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 1/27
+
+## 2. TxLog streaming over TCP
+> 다양한 기능확장이 예상되므로, over HTTP로 변경할까 함.
+
+ 1. **Control plane과 Data plane**으로 역할 구분
+
+| 구분    | 프로토콜     | 주요 기능                                            |
+|---------|--------------|------------------------------------------------------|
+| Control | HTTP / JSON  | 상호 인증, 큐 목록 조회, 세션 생성, 현재 오프셋 확인 |
+| Data    | TCP / Binary | DataMessage 고속 스트리밍, Ack/Nack, 실시간 백프레셔 |
+
+2. Consideration 
+ - firewall NACL 등으로 일방향 connect 시나리오
+ - skipTo offset : offset 저장은 client역
+ - 
+---
+# 1/28
+
+## 중간 정돈/조정
+* library 공부하면서 급하게 작성된 코드 정돈겸 refactoring
+
+* 대상
+> 1. SpeTest : test code base 변경 : fs2 --> pekko
+> 2. PersistQue : refactoring
+> 3. PersistQueSource
+> 4. PersistQueSink
+> 5. QueRelay
+
+
+---
+# ~ 1/27
+
+## 1. serde format: ProtoBuf  
+* 완료
+
+## 2. TxLog streaming over TCP
+* Akka 라이브러리 이용하여 proto-typing 해봄
+
+* TCP server/client + akka-streaming 구조로 진행 예정.
+> 1. 프로토타입 : akka 라이브러리 역시 learning-curve 있음.
+> 2. protocol과 layer별 역할 구분 고민 깊게 해봐야 될 듯.
+
+---
 # 1/21
 * serde format 변경 중.
   ~ protoBuf 작업 중 (2일 정도 소요 예상)
