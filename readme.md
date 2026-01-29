@@ -12,7 +12,7 @@
   > * ~테스트방법 정리~
   > * Binary spec 확인
   > * **구현일정 확정**
-* 구현 : ~ 2/13일 ( 20 MD + 3MD ; buf)
+* 구현 : ~ 2/13일 -> 3/27일로 (node간 시스템 구성에 필요한 기능 추가필요로)
   > 1. ~pgoutput binary 파서~ : **DeltaFlow_0.1.x**
   > 2. ~preprocessing: stream-structure/tag~ : **DeltaFlow_0.2.x**
   > 3. stateful processing (~table/col meta caching~) ( 2 -3주 정도)  : **DeltaFlow_0.3.x**
