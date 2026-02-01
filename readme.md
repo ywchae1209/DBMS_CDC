@@ -31,6 +31,8 @@
 # 2/1
 
 * ChronicleQue의 Thread Affinity (특정 Thread 고정으로 read/write해야 하는 제한)문제해결 해야 됨.
+* -> 해결함
+* Infinite Read 함수 손봐야 함. (내일)
 
 ---
 # 1/28 ~ 1/30
