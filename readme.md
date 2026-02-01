@@ -28,9 +28,14 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 2/1
+
+* ChronicleQue의 Thread Affinity (특정 Thread 고정으로 read/write해야 하는 제한)문제해결 해야 됨.
+
+---
 # 1/28 ~ 1/30
 
-## 중간 정돈/조정
+## ~중간 정돈/조정~
 * library 공부하면서 급하게 작성된 코드 정돈겸 refactoring
 
 * 대상
