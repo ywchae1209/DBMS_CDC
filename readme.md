@@ -28,6 +28,15 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 2/2
+
+### ~pump CDC, Que~ : done (Infinite Read 함수)
+  
+### 종료신호시, PGReplicationStream read-offset처리
+* 중단시 IgnoreSignal 추가 (received vs applied gap처리)
+* IgnoreSignal 발생시켜야 되는 테스트 케이스 필요. :: 찾기가 힘드네
+
+---
 # 2/1
 
 * ChronicleQue의 Thread Affinity (특정 Thread 고정으로 read/write해야 하는 제한)문제해결 해야 됨.
