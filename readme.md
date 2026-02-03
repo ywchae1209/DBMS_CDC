@@ -31,8 +31,8 @@
 # 2/3
 
 ### Streaming over Network
-* 간단하게 만들어서 local test : 10 ~ 15만 EPS정도 (over HTTP)
-> * In-memory 동작의 최대치는 25만 언더리.
+* 간단하게 만들어서 local test : 15만~20만 EPS정도 (over HTTP)
+> * In-memory 동작은 25만~30만 언더리.
 > * 통신속도 올릴 방법 찾아봐야 겠음.
 > * over gRPC(Http/2)와 비교해볼 예정.
 
