@@ -39,6 +39,12 @@
 * **To-Read**
 [[https://pekko.apache.org/docs/pekko-grpc/current/index.html]]
 
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 3465M    0 3465M    0     0  22.2M      0 --:--:--  0:02:35 --:--:--     0
+30135296
+```
 ---
 # 2/2
 
