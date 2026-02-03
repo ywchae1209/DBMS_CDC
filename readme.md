@@ -28,13 +28,22 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 2/3
+
+### Streaming over HTTP 
+* 간단하게 만들어서 local test : 10 ~ 15만 EPS정도
+> * In-memory 동작의 최대치는 25만 언더리.
+> * 통신속도 올릴 방법 찾아봐야 겠음.
+
+
+---
 # 2/2
 
 ### ~pump CDC, Que~ : done (Infinite Read 함수)
   
 ### 종료신호시, PGReplicationStream read-offset처리
 * 중단시 IgnoreSignal 추가 (received vs applied gap처리)
-* IgnoreSignal 발생시켜야 되는 테스트 케이스 필요. :: 찾기가 힘드네
+* IgnoreSignal 발생시켜야 되는 **테스트 케이스** 필요. :: 찾기가 힘드네 -> 나중에 찾는 걸로.
 
 ---
 # 2/1
