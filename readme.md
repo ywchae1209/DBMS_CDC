@@ -16,7 +16,7 @@
   > 1. ~pgoutput binary 파서~ : **DeltaFlow_0.1.x**
   > 2. ~preprocessing: stream-structure/tag~ : **DeltaFlow_0.2.x**
   > 3. stateful processing (~table/col meta caching~) ( 2 -3주 정도)  : **DeltaFlow_0.3.x**
-  > 4. serde : serialize & deserialize ( 2 - 4MD) : **DeltaFlow_0.4.x**
+  > 4. ~serde : serialize & deserialize ( 2 - 4MD)~ : **DeltaFlow_0.4.x**
   > 5. network/distribute : akka ( 5 - 6 MD) : **DeltaFlow_0.5.x**
   > 6. apply( stream 모드 spooler ) : custom(? 1 ~ 2Week) : **DeltaFlow_0.6.x**
   > 7. 필수설정 ( 3 ~ 4MD) : **DeltaFlow_0.7.x**
@@ -35,6 +35,9 @@
 > * In-memory 동작의 최대치는 25만 언더리.
 > * 통신속도 올릴 방법 찾아봐야 겠음.
 > * over gRPC(Http/2)와 비교해볼 예정.
+
+* **To-Read**
+[[https://pekko.apache.org/docs/pekko-grpc/current/index.html]]
 
 ---
 # 2/2
