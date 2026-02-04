@@ -28,6 +28,13 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+#2/4
+
+###  grpcurl : gRPC 테스트 툴
+* tool [https://github.com/fullstorydev/grpcurl]]
+
+
+---
 # 2/3
 
 ### Streaming over Network
