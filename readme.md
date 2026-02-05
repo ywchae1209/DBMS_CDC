@@ -30,6 +30,38 @@
 ---
 # 2/5
 
+### protocol sketch 
+
+| 1. Pump     | 　                      | 　                       | 　                                                         |
+|-------------|-------------------------|--------------------------|------------------------------------------------------------|
+|             | 1.1 ListPumpTask        | * StateTable             |                                                            |
+|             | 1.2 StopPumpTask        | * killSwitch             |                                                            |
+|             | 1.3 StartPumpTask       |                          | * may start pumping on GetStream request // * withThrottle |
+|             | 1.4 GetPumpTaskStatus   | * StateTable             |                                                            |
+| 2. Stream   | 　                      | 　                       | 　                                                         |
+|             | 2.1 ListStreamTask      | * StateTable             |                                                            |
+|             | 2.2 StopStreamTask      | * killSwitch             |                                                            |
+|             | 2.3 GetStream           |                          | * with Throttle                                            |
+|             | 2.4 GetStreamTaskStatus | * StateTable             |                                                            |
+| 3. Apply    | 　                      | 　                       | 　                                                         |
+|             | 3.1 ListApplyTask       |                          |                                                            |
+|             | 3.2 StopApplyTask       |                          |                                                            |
+|             | 3.3 StartApplyTask      | * to DB/ to Kafka/       | * Mapping Rule                                             |
+|             | 3.4 GetApplyTaskStatus  |                          |                                                            |
+| 4. Topic    | 　                      | 　                       | 　                                                         |
+|             | 4.1 ListTopic           | * StateTable             |                                                            |
+|             | 4.2 RemoveTopic         |                          |                                                            |
+|             | 4.3 GetTopicStatus      | * StateTable             |                                                            |
+| 5. Env      | 　                      | 　                       | 　                                                         |
+|             | 5.1 GetRuntimeState     | * StateTable             | * 10 or 15 second period ( 4 or 6 per min)                 |
+| 6. ACL, Env | 　                      | 　                       | 　                                                         |
+|             | 6.1 SetSharedID         | * site shared-ID for ACL |                                                            |
+|             | 6.2 SetBlockOrWhite     | * ACL Node'ID            | * Topologic ACL                                            |
+|             | 6.3 enableTLS           | * 구간암호               | * 서버는 TLS 인증(사설인증) + 클라이언트는 OTP 인증        |
+|             | 6.4 SetPorts            |                          | * 안 맞을 듯한 기능이긴 함                                  |
+| 7. Task     | 　                      | 　                       | 　                                                         |
+|             | 7.1 GetAndApply         |                          | * 누군가 시작점 역할을 해야 할텐데.                          |
+
 ### architecutre sketch
 
 
