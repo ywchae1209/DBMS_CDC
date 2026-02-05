@@ -30,6 +30,13 @@
 ---
 # 2/5
 
+### architecutre sketch
+
+
+![스케치](https://github.com/ywchae1209/DBMS_CDC/blob/master/architecture01.png "스케치")
+
+
+
 ### Network Streaming 서비스 테스트 결과
 * gRPC (통신protocol) + protobuf (직렬화/역직렬화) : OK 
 * "OK~ 진행시켜~" (아마도 현실적인 최적 balance?)
