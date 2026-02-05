@@ -28,6 +28,67 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+#2/5
+
+### Network Streaming 서비스 테스트 결과
+* gRPC (통신protocol) + protobuf (직렬화/역직렬화) : OK (아마도 최적?)
+* "진행시켜~"
+
+#### 대상
+1. size : 2.76GB (2,969,567,232 바이트)
+2. Record : 30,135,623
+3. 평균 메지지 Size = 98.5 바이트 ( meta-overhead 포함 : 30바이트 가량 포함)
+ 
+#### 환경
+1. Local Server-client : OS의 네트웍 stack을 경유하지만, Network overhead는 최소화
+2. Server-Client : 자원 share ( Memory, CPU 등 자원사용량 중첩)
+
+* Notebook : LG전자 2023 그램 16 16ZD90R-EX7VK
+> * CPU: 인텔 13세대 코어 i7-1360P (2.2GHz)
+> * GPU: NVIDIA GeForce RTX 3050 Laptop GPU (외장 그래픽)
+> * RAM: 32GB LPDDR5 (온보드)
+> * 저장장치: 1TB NVMe SSD
+
+#### 결과 
+1. CPU      : 15% 내외
+2. Memory   : 150 MB 내외 ( 
+3. Duration : 59 second
+
+| Item      | #             | Unit   |
+|-----------|---------------|--------|
+| Size      | 2,969,567,232 | byte   |
+| Count     | 30,135,623    |        |
+| Mean size | 98.54009761   | byte   |
+| Duration  | 59            | second |
+
+#### Metric & 평가
+
+##### Metric
+  
+| Metric | Result              |
+|--------|---------------------|
+| EPS    |           510,773   |
+| BPS    |              48.00  |
+
+1. EPS는 상한치에 가깝고, ( 51만 EPS)
+2. Byte-ThroughPut은 더 높아질 것으로( 최소 50 MBps 이상) 예상됨.( 극히 작은 Message)
+ 
+
+##### 평가
+1. 목표에 부합하는 것으로 판단됨
+2. 자원사용 적정선
+
+> * Source-node에 자원 적정선 ( 15%, 200MB )
+> * 네트웍 자원 적정선 : 1 Gbps(125MB/s) Network 경우, 약 38%의 Band(48MB/s) 사용
+
+#### 제한 및 Todo
+
+1. single-node 테스트 ( server, client node **분리테스트** )
+2. Streaming 서비스 대상(target-node)의 개수를 늘릴 경우 **Cost 선형성 테스트**
+3. Streaming 메시지 Mix : Large Message 포함( Chunk단위 분할 스트리밍 적용되어 있음.)
+4. 기능검토 : Throttling 등 **자원 사용량 사용상한치 조절**
+
+---
 #2/4
 
 ###  grpcurl : gRPC 테스트 툴
