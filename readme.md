@@ -77,7 +77,7 @@
 | Metric | Result              |
 |--------|---------------------|
 | EPS    |           510,773   |
-| BPS    |              48.00  |
+| MBPS   |              48.00  |
 
 1. EPS는 상한치에 가깝고, ( 51만 EPS)
 2. Byte-ThroughPut은 더 높아질 것으로( 최소 50 MBps 이상) 예상됨.( 극히 작은 Message)
