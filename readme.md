@@ -1,4 +1,4 @@
-* working history
+# working history
 ----
 
 ## Mile-stone plan draft
@@ -48,6 +48,15 @@
 > * GPU: NVIDIA GeForce RTX 3050 Laptop GPU (외장 그래픽)
 > * RAM: 32GB LPDDR5 (온보드)
 > * 저장장치: 1TB NVMe SSD
+
+* back-pressure 적용
+> * client의 요청에 따라 server의 out속도 연동
+> * client 요청속도 최대화를 위해 recevied message 갯수만 세도록 함
+
+* 순서의존적 이벤트처리
+> * server-node의 streaming thread는 single-fixed-thread 적용
+> * client-node의 streaming thread는 single-fixed-thread 적용 
+> * 물리적 서비스 상한선 존재함 : 50 ~ 100개이내 Thread ( node의 OS 의존적 )
 
 #### 결과 
 1. CPU      : 15% 내외
