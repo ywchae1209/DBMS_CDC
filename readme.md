@@ -31,8 +31,8 @@
 #2/5
 
 ### Network Streaming 서비스 테스트 결과
-* gRPC (통신protocol) + protobuf (직렬화/역직렬화) : OK (아마도 최적?)
-* "진행시켜~"
+* gRPC (통신protocol) + protobuf (직렬화/역직렬화) : OK 
+* "OK~ 진행시켜~" (아마도 현실적인 최적 balance?)
 
 #### 대상
 1. size : 2.76GB (2,969,567,232 바이트)
@@ -60,7 +60,7 @@
 
 #### 결과 
 1. CPU      : 15% 내외
-2. Memory   : 150 MB 내외 ( 
+2. Memory   : 150 MB 내외
 3. Duration : 59 second
 
 | Item      | #             | Unit   |
@@ -81,13 +81,13 @@
 
 1. EPS는 상한치에 가깝고, ( 51만 EPS)
 2. Byte-ThroughPut은 더 높아질 것으로( 최소 50 MBps 이상) 예상됨.( 극히 작은 Message)
- 
 
 ##### 평가
 1. 목표에 부합하는 것으로 판단됨
 2. 자원사용 적정선
 
-> * Source-node에 자원 적정선 ( 15%, 200MB )
+> * 통신처리의 Source/Client 사용자원 적정선 ( 15%, 200MB )
+> * Chunk-base 통신이므로, 통신기능에서 사용되는 메모리는 일정 수준으로 유지될 것. (large message가 섞이더라도)
 > * 네트웍 자원 적정선 : 1 Gbps(125MB/s) Network 경우, 약 38%의 Band(48MB/s) 사용
 
 #### 제한 및 Todo
