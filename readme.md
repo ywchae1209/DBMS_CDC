@@ -103,6 +103,19 @@
 ###  grpcurl : gRPC 테스트 툴
 * tool [https://github.com/fullstorydev/grpcurl]]
 
+* powershell (Window) command
+```
+// 문자열 escaping이 틀리는 경우가 많아서 기록차.
+
+grpcurl.exe -plaintext -import-path ./src/main/protobuf -proto task_result.proto -d '{\"secret\": \"\", \"topic\": \"\"}' 127.0.0.1:8080 io.flux.postgres.proto3.v0.BlockStreamService/GetStream
+```
+
+```
+// gRPC 서비스중인 내용의 목록을 요청할 수도 있음( 오호~)
+
+grpcurl -plaintext localhost:8080 list
+```
+
 
 ---
 # 2/3
