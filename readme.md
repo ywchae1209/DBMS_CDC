@@ -28,7 +28,7 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
-#2/5
+# 2/5
 
 ### Network Streaming 서비스 테스트 결과
 * gRPC (통신protocol) + protobuf (직렬화/역직렬화) : OK 
@@ -98,7 +98,7 @@
 4. 기능검토 : Throttling 등 **자원 사용량 사용상한치 조절**
 
 ---
-#2/4
+# 2/4
 
 ###  grpcurl : gRPC 테스트 툴
 * tool [https://github.com/fullstorydev/grpcurl]]
