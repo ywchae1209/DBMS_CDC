@@ -28,6 +28,31 @@
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
 ---
+# 2/6
+
+## Todo & Next plan
+### Todo-1
+*  CDC-core 서비스를 위한 기본기능은 90% 정도완료
+ 
+*  해야 할 작업
+1. 기본기능 : Applier 부분과 Internal State Share 남음
+2. 관리기능 : 내부 Tread Life-cycle 관리부분
+
+### Todo-2
+* CDC-core 서비스의 외부 Interface 정의해야 함.
+
+* 해야 할 작업
+1. 필요한 Interface spec 정의 ~ gRPC API 서비스
+2. 필수 API : 약 20~30개 정도 예상됨.
+3. 부수 API : 약 50여개 정도 예상
+4. 내부 State관리 기능 ( conf, runtime-state, historic metric)
+
+### Plan ( Next week )
+1 2.1의 설계작업: API 정의
+2.2.1의 기본 API 정의 및 검증 (최소한의 시나리오: API 4~5 + Test )
+
+
+---
 # 2/5
 
 ### protocol sketch 
