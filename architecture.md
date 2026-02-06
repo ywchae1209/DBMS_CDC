@@ -26,16 +26,6 @@
 > * 완결적 동작으로 **CDC capture cluster구성이 가능한 분산 구조**를 지원하도록 하자.
 > * 배포, 설치, 동작에 필요한 **제약사항 최소화**
 
-> * Note
-```
-초고성능 Que기능을 위해서 MMF기능을 사용함.
-(Memory-Mapped-File; 초고속 FileI/O를 위해 Memory와 File을 직접 Mapping하는 OS 기능)
-
-MMF는 유일하게 OS 의존성 제약이 있는 부분으로 이식성 제한이 있는지 확인필요함.
-( Modern OS는 관계없고, 오래된 AIX 같은 OS)
-~> 만약, 제약 있으면 traditional File-API기반으로 Que를 추가로 만들어야 함.
-```
-
 ### 4. Reactive Architecutre First
 * **Reactive Architecutre First로 하자.**
 
@@ -44,3 +34,57 @@ MMF는 유일하게 OS 의존성 제약이 있는 부분으로 이식성 제한�
 >   [참고]
 > * [[https://www.reactivemanifesto.org/]]
 > * [[https://techbuzzonline.com/reactive-architecture-patterns-guide/]]
+
+### note
+
+* 유일하게 OS 의존성 제약이 있는 부분
+```
+초고성능 Que기능을 위해서 MMF기능을 사용함.
+(Memory-Mapped-File; 초고속 FileI/O를 위해 Memory와 File을 직접 Mapping하는 OS 기능)
+
+MMF는 유일하게 OS 의존성 제약이 있는 부분으로 이식성 제한이 있는지 확인필요함.
+( Window, Linux, MacOS등과 POSIX 호환 Unix-Like OS 대부분 지원)
+
+~> 만약, 제약 있으면 traditional File-API기반으로 Que를 추가로 만들어야 함.
+(  보통의 방식이긴 하나, 성능상 많은 불이익 발생.)
+```
+
+* MMF 지원 여부에 대한 최소한의 질문
+```
+Shared Memory 기반의 mmap()이 완벽히 작동하는가? (POSIX)
+64-bit Atomic 연산을 OS 수준에서 보장하는가?
+최소한 Java 8 이상의 JVM이 해당 OS용으로 빌드되어 있는가?
+
+>>> IBM의 AIX
+* 7.x이후는 지원가능성 높음 (2010년 Release)
+* 6.x 버전은 지원가능할 수도 있으나, 사실상 안된다고 보는 게 맞음.
+* Que기능을 해당 O/S에서 사용하지 않도록
+```
+
+* 참고
+
+jar(java 실행파일)도 jar-file버전에 따라 실행가능한 JVM 최소버전이 다름
+
+| 빌드 JDK | 생성되는 class file version | 실행 가능한 최소 JVM | 출시 연도 |
+|:--------:|:---------------------------:|:--------------------:|:---------:|
+| *JDK 8    | 52                          | JDK 8                | 2014      |
+| JDK 9    | 53                          | JDK 9                | 2017      |
+| JDK 10   | 54                          | JDK 10               | 2018      |
+| JDK 11   | 55                          | JDK 11               | 2018      |
+| JDK 12   | 56                          | JDK 12               | 2019      |
+| JDK 13   | 57                          | JDK 13               | 2019      |
+| JDK 14   | 58                          | JDK 14               | 2020      |
+| JDK 15   | 59                          | JDK 15               | 2020      |
+| JDK 16   | 60                          | JDK 16               | 2021      |
+| JDK 17   | 61                          | JDK 17               | 2021      |
+| JDK 18   | 62                          | JDK 18               | 2022      |
+| JDK 19   | 63                          | JDK 19               | 2022      |
+| JDK 20   | 64                          | JDK 20               | 2023      |
+| *JDK 21   | 65                          | JDK 21              | 2023      |
+| JDK 22   | 66                          | JDK 22               | 2024      |
+| JDK 23   | 67                          | JDK 23               | 2024      |
+
+
+* JDK 8은 Modern Java의 시작버전이며, 많은 Java 프로그램에서 최소한 JDK version임.
+* JDK 버전에 따라 Memory관리등의 최적화 수준 차이가 크며,
+* 시스템 자원 성능을 최대한 쥐어짜내야 하니, Virtual Thread가 포함된 **JDK 21**이 권장 버전임.
