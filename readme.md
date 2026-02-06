@@ -51,6 +51,11 @@
 1 2.1의 설계작업: API 정의
 2.2.1의 기본 API 정의 및 검증 (최소한의 시나리오: API 4~5 + Test )
 
+![스케치](https://github.com/ywchae1209/DBMS_CDC/blob/master/architecture02.png "스케치")
+
+* 고민사항 about Thread-pool 
+> * Que I/O를 담당하는 Thread(Pump, Applier, Source)는 Dedicated Thread 1개를 고정으로 사용해야 함( Chronicle-Que의 제약)
+> * 이를 우회하지 못하면, 물리적 core X 2 정도의 제약이 발생함. ( -> 우회방안 고민 필요 )
 
 ---
 # 2/5
@@ -91,7 +96,6 @@
 
 
 ![스케치](https://github.com/ywchae1209/DBMS_CDC/blob/master/architecture01.png "스케치")
-
 
 
 ### Network Streaming 서비스 테스트 결과
