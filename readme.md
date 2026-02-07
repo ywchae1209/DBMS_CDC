@@ -40,8 +40,8 @@ Thread 1개내에서 실행되어야 하는 제약이 있음.( Thread-Affinity �
 
 * 우회조치
 > fixed-thread-pool을 이용하여, I/O동작에 affinity-thread 배정하도록 함.  
-> Thread-affinity제약을 지키면서, 제한된 Thread로 여러 I/O 작업에 가능하도록 함.
-> 즉, 물리적 Thread 제약 탈피. ( **need some testing** )
+> Thread-affinity제약을 지키면서, 제한된 Thread로 여러 I/O 작업에 가능하도록 함.  
+> 즉, Chronicle-Que 라이브러리로 인한 물리적 Thread 제약 탈피. ( **need some testing** )
 
 
 ---
