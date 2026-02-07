@@ -27,6 +27,23 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
+# 2/7
+---
+* 고민사항 (about Thread-pool)에 대한 조치
+```
+Que I/O를 담당하는 Thread(Pump, Applier, Source)는
+Thread 1개내에서 실행되어야 하는 제약이 있음.( Thread-Affinity 제약이라고 함.)
+( Chronicle-Que 라이브러리의 제약임)
+
+이를 우회하지 못하면, 물리적 core X 2 정도의 제약이 발생함. ( -> 우회방안 고민 필요 )
+```
+
+* 우회조치
+> fixed-thread-pool을 이용하여, I/O동작에 affinity-thread 배정하도록 함.  
+> Thread-affinity제약을 지키면서, 제한된 Thread로 여러 I/O 작업에 가능하도록 함.
+> 즉, 물리적 Thread 제약 탈피. ( **need some testing** )
+
+
 ---
 # 2/6
 
