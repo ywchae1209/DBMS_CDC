@@ -29,7 +29,7 @@
 
 # 2/7
 ---
-* 고민사항 (about Thread-pool)에 대한 조치
+### 고민사항 (about Thread-pool)에 대한 조치
 ```
 Que I/O를 담당하는 Thread(Pump, Applier, Source)는
 Thread 1개내에서 실행되어야 하는 제약이 있음.( Thread-Affinity 제약이라고 함.)
@@ -38,10 +38,20 @@ Thread 1개내에서 실행되어야 하는 제약이 있음.( Thread-Affinity �
 이를 우회하지 못하면, 물리적 core X 2 정도의 제약이 발생함. ( -> 우회방안 고민 필요 )
 ```
 
-* 우회조치
+* 우회조치 함
 > fixed-thread-pool을 이용하여, I/O동작에 affinity-thread 배정하도록 함.  
 > Thread-affinity제약을 지키면서, 제한된 Thread로 여러 I/O 작업에 가능하도록 함.  
 > 즉, Chronicle-Que 라이브러리로 인한 물리적 Thread 제약 탈피. ( **need some testing** )
+
+### 어제 애기나눈 아이디어(w/곽)
+1. **Initialize/ 복구 시나리오**
+  * Sql 등 SE **`작업단계`** : (ex: select all) ~> (ex: truncate & insert all)
+    
+  * 작업단계별 **`user-message`삽입**( CDC에 사용자정의 메시지)과
+  * `user-message`를 처리기준으로 하여, **메시지 선별/Skip등 동적처리**시나리오
+    
+2. **Stream 분리**(All-table-stream --> per Table Stream)와 **병합**(per Table Stream --> merged stream)
+
 
 
 ---
