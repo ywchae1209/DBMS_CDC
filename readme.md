@@ -27,6 +27,11 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
+# 2/8
+---
+설계 : 용어 정비
+
+
 # 2/7
 ---
 ### 고민사항 (about Thread-pool)에 대한 조치
