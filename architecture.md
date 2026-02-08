@@ -3,6 +3,30 @@
 
 ![스케치](https://github.com/ywchae1209/DBMS_CDC/blob/master/architecture02.png "스케치")
 
+### 용어
+* 역할에 따른 Node구분
+
+| Node        | 물리적(또는 논리적)으로 OS가 설치된 Machine |
+|-------------|---------------------------------------------|
+| Source Node | 데이터의 원천 노드                          |
+| Pump Node*  | Source Node에서 추출하는 노드               |
+| Relay Node* | 다른 노드의 요청에 따라 Msg제공하는 노드    |
+| Sink Node*  | 데이터가 최종 소비되는 노드                 |
+| Target Node | 데이터가 최종 적용되는 노드                 |
+
+~ DeltaFlow의 설치여부와 할당한 동작에 따라 Node의 역할이 달라진다.
+
+* DeltaFlow sub-module
+
+|            | DeltaFlow의 주요 구성요소                                                     |
+|------------|-------------------------------------------------------------------------------|
+| Pump       | 원천 또는 supply-node에서 데이터를 가져와서(pull) Que에 쌓는(append) Thread들 |
+| Supplier   | Que의 메시지를 (외부에) 제공하는 Thread들                                     |
+| Applier    | Que의 메지시를 소비하는 Thread들                                              |
+| Que        | 원천메시지의 저장소( file-Que)                                                |
+| Controller | DeltaFlow 서버 (gRPC server)                                                  |
+
+
 ## 설계방향
 
 ### 1. Multi-Thread 기반의 단일실행파일
