@@ -32,8 +32,9 @@
 * Miminum API 정의/구현/테스트 ( 2/9일 ~ 이번주?)
 > 1. StartPump    // from Source (DBMS) to Pump-Node
 > 2. GetStream    // from DeltaFlow relay-server
-> 3. gRPC-Client  // getStream & show
-> 4. protobuf IDL 수정
+> 3. Controller   // Basic State control & Thread control
+> 4. gRPC-Client  // getStream & show
+> 5. protobuf IDL 수정
 
 # 2/9
 ---
