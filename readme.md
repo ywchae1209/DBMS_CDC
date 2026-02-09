@@ -27,6 +27,17 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
 
+# 2/9
+---
+* 설계 : 구조 정리
+> * for later mutation
+> * some design pattern added ( interface/ implementaion 격리 등)
+
+* Miminum API 정의/구현/테스트
+> 1. StartPump    // from Source (DBMS) to Pump-Node
+> 2. GetStream    // from DeltaFlow relay-server
+> 3. gRPC-Client  // getStream & show
+
 # 2/8
 ---
 설계 : 용어 정비
