@@ -25,22 +25,30 @@
 
 * out-of-scope
 > 1. 설정관련 처리
-> 2. initial 동작 부분 : snapshot +  start capturing 어떻게..?
+> 2. initial 동작 부분 : snapshot +  start capturing 어떻게..? --> 2/7일 노트 참고
 
-# 2/9
+# 2/10
 ---
-* 설계 : 구조 정리
-> * for later mutation
-> * some design pattern added ( interface/ implementaion 격리 등)
-
-* Miminum API 정의/구현/테스트
+* Miminum API 정의/구현/테스트 ( 2/9일 ~ 이번주?)
 > 1. StartPump    // from Source (DBMS) to Pump-Node
 > 2. GetStream    // from DeltaFlow relay-server
 > 3. gRPC-Client  // getStream & show
+> 4. protobuf IDL 수정
+
+# 2/9
+---
+* 설계 : 전반 구조 정리
+> * for later mutation
+> * some design pattern added ( interface/ implementaion 격리 등)
+
+* Common Util (ThreadSafe-Collection) 구현 ~ DeltaFlow control 모듈용
+> 1. StateMap[K,V] : 상태관리용 Map ( ex: pump, applier, ... 's state )
+> 2. StateOf[V]    : 상태변수 Container
+> 3. Observer[A,B] : 모니터링용 Observer
 
 # 2/8
 ---
-설계 : 용어 정비
+설계 : 용어/개념 일부 정비
 
 
 # 2/7
