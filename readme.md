@@ -36,6 +36,9 @@
 > 4. gRPC-Client  // getStream & show
 > 5. protobuf IDL 수정
 
+* 오늘 한 일.
+> pumpService 모듈 구현함.(위의 StartPump 일부)
+
 # 2/9
 ---
 * 설계 : 전반 구조 정리
