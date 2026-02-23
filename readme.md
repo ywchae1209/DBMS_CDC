@@ -27,6 +27,27 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..? --> 2/7일 노트 참고
 
+# ~2/20
+---
+
+* 설연휴로 진도 많이 못나감
+
+## 한 일
+### 1. DeltaFlowServer, DeltaFlowClient 일부 기능 작성 및 테스트
+> 1. startPump
+> 2. startPumpPg
+> 3. getStream
+
+### 2. Que 수정
+> Que가 encoding/decoding 역할까지 담당하지 않도록 수정.   
+> (Generic Type --> Block(fixed type)으로)
+> 과하게 복잡해지는 부분이 있어서, 단순화.
+
+### 3. 처리량 모니터링 
+> 1. 처리량 모니터링 기능
+> 2. **Todo) 복구와 관련된 기능도 여기에 넣어야 할 듯.**
+
+
 # 2/10
 ---
 * Miminum API 정의/구현/테스트 ( 2/9일 ~ 이번주?)
