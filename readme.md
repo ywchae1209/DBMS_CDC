@@ -27,6 +27,14 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..? --> 2/7일 노트 참고
 
+# 2/23
+---
+
+## 잔여 작업 예상
+
+### DeltaFlowService관련 : 2 주정도
+### Applier : 1.5~2주정도
+
 # ~2/20
 ---
 
