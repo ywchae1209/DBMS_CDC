@@ -30,6 +30,8 @@
 # 2/23
 ---
 
+* management 업무로 작업 진행 못함. ㅠㅠ
+
 ## 잔여 작업 예상
 
 ### DeltaFlowService관련 : 2 주정도
