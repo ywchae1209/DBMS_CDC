@@ -27,10 +27,10 @@
 > 1. 설정관련 처리
 > 2. initial 동작 부분 : snapshot +  start capturing 어떻게..? --> 2/7일 노트 참고
 
-# 2/23
+# 3월 : 잠시 개발 중단
 ---
 
-* management 업무로 작업 진행 못함. ㅠㅠ
+* 관리업무
 
 ## 잔여 작업 예상
 
@@ -39,8 +39,6 @@
 
 # ~2/20
 ---
-
-* 설연휴로 진도 많이 못나감
 
 ## 한 일
 ### 1. DeltaFlowServer, DeltaFlowClient 일부 기능 작성 및 테스트
